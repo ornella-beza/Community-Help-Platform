@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Citizen Dashboard - Manage your community help requests and track assistance progress">
+    <title>Citizen Dashboard - Community Help Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body class="bg-surface">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-border sticky top-0 z-50 shadow-subtle">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Community Help Platform Logo">
+                        <circle cx="20" cy="20" r="18" fill="#3B82F6" opacity="0.1" />
+                        <path
+                            d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                            fill="#3B82F6" />
+                    </svg>
+                    <span class="text-xl font-semibold text-text-primary">Community Help</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="citizen_dashboard.html"
+                        class="text-primary font-medium border-b-2 border-primary pb-1">Dashboard</a>
+                    <a href="create_request.html" class="text-text-secondary hover:text-primary transition-micro">Create
+                        Request</a>
+                    <a href="request_templates.html" class="text-text-secondary hover:text-primary transition-micro">Templates</a>
+                    <a href="community_board.html" class="text-text-secondary hover:text-primary transition-micro">Community</a>
+                    <div class="relative">
+                        <button id="notificationBtn" class="relative p-2 rounded-lg hover:bg-surface transition-micro"
+                            aria-label="Notifications">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                            <span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+                        </button>
+                    </div>
+                    <div id="profileAvatar" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm">
+                        U
+                    </div>
+                    <button id="logoutBtn" class="btn-outline text-error hover:bg-error-50">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface transition-micro"
+                    aria-label="Toggle mobile menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="citizen_dashboard.html" class="text-primary font-medium py-2">Dashboard</a>
+                    <a href="create_request.html"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">Create Request</a>
+                    <a href="request_templates.html"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">Templates</a>
+                    <a href="community_board.html"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">Community</a>
+                    <a href="javascript:void(0)"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">Profile Settings</a>
+                    <a href="login.html" class="text-error hover:text-error-600 transition-micro py-2">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Welcome Section -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-text-primary mb-2">Welcome back! 👋</h1>
+            <p class="text-text-secondary">Here's an overview of your community assistance activity</p>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- Active Requests Card -->
+            <div class="card-elevated hover:shadow-lg transition-standard">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <span class="status-info">Active</span>
+                </div>
+                <div class="text-3xl font-bold text-text-primary mb-1">0</div>
+                <div class="text-sm text-text-secondary">Active Requests</div>
+            </div>
+
+            <!-- Completed Tasks Card -->
+            <div class="card-elevated hover:shadow-lg transition-standard">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 bg-success-100 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <span class="status-success">Completed</span>
+                </div>
+                <div class="text-3xl font-bold text-text-primary mb-1">0</div>
+                <div class="text-sm text-text-secondary">Completed Tasks</div>
+            </div>
+
+            <!-- Community Impact Card -->
+            <div class="card-elevated hover:shadow-lg transition-standard">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span class="text-xs text-text-secondary">This Month</span>
+                </div>
+                <div class="text-3xl font-bold text-text-primary mb-1">0%</div>
+                <div class="text-sm text-text-secondary">Success Rate</div>
+            </div>
+        </div>
+
+        <!-- Quick Actions Section -->
+        <div class="card-elevated mb-8">
+            <h2 class="text-xl font-semibold text-text-primary mb-6">Quick Actions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+                <!-- Create New Request -->
+                <a href="create_request.html"
+                    class="flex flex-col items-center gap-3 p-4 rounded-xl bg-primary text-white hover:bg-primary-600 transition-standard group">
+                    <div
+                        class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center group-hover:scale-110 transition-standard">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-center">Create Request</span>
+                </a>
+
+                <!-- Food Assistance -->
+                <a href="create_request.html?category=food"
+                    class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface hover:bg-secondary-100 transition-standard group">
+                    <div
+                        class="w-12 h-12 bg-warning-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-standard">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-text-primary text-center">Food Help</span>
+                </a>
+
+                <!-- Emergency -->
+                <a href="create_request.html?category=emergency"
+                    class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface hover:bg-secondary-100 transition-standard group">
+                    <div
+                        class="w-12 h-12 bg-error-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-standard">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-text-primary text-center">Emergency</span>
+                </a>
+
+                <!-- Transportation -->
+                <a href="create_request.html?category=transportation"
+                    class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface hover:bg-secondary-100 transition-standard group">
+                    <div
+                        class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-standard">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-text-primary text-center">Transport</span>
+                </a>
+
+                <!-- Elderly Care -->
+                <a href="create_request.html?category=elderly_care"
+                    class="flex flex-col items-center gap-3 p-4 rounded-xl bg-surface hover:bg-secondary-100 transition-standard group">
+                    <div
+                        class="w-12 h-12 bg-success-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-standard">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-text-primary text-center">Elderly Care</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- My Requests Section -->
+            <div class="lg:col-span-2">
+                <div class="card-elevated">
+                    <!-- Header with Filters -->
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                        <h2 class="text-xl font-semibold text-text-primary">My Requests</h2>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <!-- Status Filter -->
+                            <select class="input py-2 text-sm" aria-label="Filter by status">
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="accepted">Accepted</option>
+                                <option value="in_progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                            <!-- Category Filter -->
+                            <select class="input py-2 text-sm" aria-label="Filter by category">
+                                <option value="all">All Categories</option>
+                                <option value="food">Food</option>
+                                <option value="emergency">Emergency</option>
+                                <option value="transport">Transportation</option>
+                                <option value="elderly">Elderly Care</option>
+                            </select>
+                            <!-- Sort -->
+                            <button class="btn-outline py-2 text-sm flex items-center gap-2">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M3 3a1 1 0 011-1h8a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V3zm2 2v2h6V5H5zm0 4v2h6V9H5z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <span>Sort</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Request List -->
+                    <div class="space-y-4">
+                        <div class="text-center py-12">
+                            <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-text-primary mb-2">No requests yet</h3>
+                            <p class="text-text-secondary mb-4">Create your first request to get help from the community</p>
+                            <a href="create_request.html" class="btn-primary">Create Request</a>
+                        </div>
+                    </div>
+
+                    <!-- Load More -->
+                    <div class="mt-6 text-center">
+                        <button class="btn-outline">
+                            Load More Requests
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Available Volunteers -->
+                <div class="card-elevated">
+                    <h2 class="text-xl font-semibold text-text-primary mb-4">Available Volunteers</h2>
+                    <div id="volunteersList" class="space-y-3">
+                        <div class="text-center py-8">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-text-primary text-sm mb-1">Loading volunteers...</h4>
+                            <p class="text-xs text-text-secondary">Finding available volunteers in your area</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rate Volunteers -->
+                <div class="card-elevated">
+                    <h2 class="text-xl font-semibold text-text-primary mb-4">Rate Your Helpers</h2>
+                    <div id="ratingsList" class="space-y-3">
+                        <div class="text-center py-8">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#F59E0B">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-text-primary text-sm mb-1">No completed tasks</h4>
+                            <p class="text-xs text-text-secondary">Rate volunteers after they help you</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Scripts -->
+    <script type="module">
+        import { requireAuth } from '../js/auth-guard.js';
+        import { getCurrentUserData, logout, onAuthChange } from '../js/auth.js';
+        import { getUserRequests, listenToRequests } from '../js/requests.js';
+        import { auth, db } from '../js/firebase-config.js';
+        import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { doc, deleteDoc, collection, query, where, getDocs, setDoc, getDoc, onSnapshot, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Protect this page - require citizen role
+        requireAuth('citizen').catch(() => {
+            // Redirect handled by requireAuth
+        });
+
+        let currentUser = null;
+        let requestsUnsubscribe = null;
+        let allRequests = [];
+        let allUserRequests = [];
+        let currentFilters = { status: 'all', category: 'all' };
+
+        // Initialize dashboard
+        async function initDashboard() {
+            try {
+                // Wait for auth state to be ready
+                const user = auth.currentUser;
+                console.log('Firebase auth user:', user);
+                
+                if (user) {
+                    currentUser = await getCurrentUserData();
+                    console.log('Current user data:', currentUser);
+                    if (currentUser) {
+                        updateUserInfo(currentUser);
+                        loadUserRequests();
+                loadAvailableVolunteers();
+                    } else {
+                        console.log('User authenticated but no user data found');
+                    }
+                } else {
+                    console.log('No authenticated user found');
+                    // Auth guard should handle redirect
+                }
+            } catch (error) {
+                console.error('Error initializing dashboard:', error);
+            }
+        }
+
+        // Update user information in UI
+        function updateUserInfo(user) {
+            console.log('Updating user info for:', user);
+            
+            // Find all h1 elements and log them
+            const allH1s = document.querySelectorAll('h1');
+            console.log('Found h1 elements:', allH1s.length);
+            allH1s.forEach((h1, index) => {
+                console.log(`H1 ${index}:`, h1.textContent);
+            });
+            
+            // Update the first h1 which should be the welcome message
+            if (allH1s[0] && user && user.fullName) {
+                const newText = `Welcome back, ${user.fullName}! 👋`;
+                allH1s[0].textContent = newText;
+                console.log('Updated welcome message to:', newText);
+            }
+
+            // Update profile avatar with first name initial
+            const profileAvatar = document.getElementById('profileAvatar');
+            if (profileAvatar && user && user.fullName) {
+                profileAvatar.textContent = user.fullName.charAt(0).toUpperCase();
+                console.log('Updated profile avatar');
+            }
+        }
+
+        // Load user requests
+        function loadUserRequests() {
+            if (!currentUser) {
+                console.log('No current user, cannot load requests');
+                return;
+            }
+
+            console.log('Loading ALL requests first...');
+            requestsUnsubscribe = listenToRequests((requests) => {
+                console.log('Received ALL requests:', requests.length);
+                allRequests = requests; // Store globally for button functions
+                
+                requests.forEach(req => {
+                    console.log('Request:', req.id, 'createdBy:', req.createdBy, 'currentUser:', currentUser.uid);
+                });
+                
+                allUserRequests = requests.filter(req => req.createdBy === currentUser.uid && !req.isGeneralChat);
+                console.log('Filtered user requests:', allUserRequests.length);
+                
+                applyFilters(); // Apply current filters
+                updateSummaryCards(allUserRequests);
+                loadRatableVolunteers(allUserRequests);
+            });
+        }
+
+        // Update summary cards
+        function updateSummaryCards(requests) {
+            console.log('Updating summary cards with requests:', requests.length);
+            const activeCount = requests.filter(r => ['pending', 'accepted', 'in_progress'].includes(r.status)).length;
+            const completedCount = requests.filter(r => r.status === 'completed').length;
+            const totalRequests = requests.length;
+            const successRate = totalRequests > 0 ? Math.round((completedCount / totalRequests) * 100) : 0;
+
+            console.log('Counts - Active:', activeCount, 'Completed:', completedCount, 'Success Rate:', successRate);
+
+            // Target summary cards specifically (skip the h1 welcome message)
+            const summaryCards = document.querySelectorAll('.grid.grid-cols-1.md\\:grid-cols-3 .text-3xl');
+            console.log('Found summary card elements:', summaryCards.length);
+            
+            // Update the summary cards with correct values
+            if (summaryCards[0]) {
+                summaryCards[0].textContent = activeCount;
+                console.log('Set active requests to:', activeCount);
+            }
+            if (summaryCards[1]) {
+                summaryCards[1].textContent = completedCount;
+                console.log('Set completed tasks to:', completedCount);
+            }
+            if (summaryCards[2]) {
+                summaryCards[2].textContent = successRate + '%';
+                console.log('Set success rate to:', successRate + '%');
+            }
+        }
+
+        // Update requests UI
+        function updateRequestsUI(requests) {
+            console.log('Updating UI with requests:', requests.length);
+            const requestsList = document.querySelector('.space-y-4');
+            console.log('Requests list element found:', !!requestsList);
+            
+            if (!requestsList) {
+                console.error('Could not find .space-y-4 element');
+                return;
+            }
+
+            if (requests.length === 0) {
+                console.log('No requests to display, showing empty state');
+                requestsList.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">No requests yet</h3>
+                        <p class="text-text-secondary mb-4">Create your first request to get help from the community</p>
+                        <a href="create_request.html" class="btn-primary">Create Request</a>
+                    </div>
+                `;
+                return;
+            }
+
+            console.log('Creating request cards for', requests.length, 'requests');
+            const cardsHTML = requests.map(request => {
+                console.log('Creating card for request:', request.id, request.title);
+                return createRequestCard(request);
+            }).join('');
+            
+            console.log('Setting innerHTML with cards');
+            requestsList.innerHTML = cardsHTML;
+            console.log('UI update complete');
+        }
+
+        // Create request card HTML
+        function createRequestCard(request) {
+            const statusConfig = {
+                pending: { class: 'status-info', text: 'Pending', color: 'bg-secondary-100' },
+                accepted: { class: 'status-warning', text: 'Accepted', color: 'bg-warning-100' },
+                in_progress: { class: 'status-warning', text: 'In Progress', color: 'bg-warning-100' },
+                completed: { class: 'status-success', text: 'Completed', color: 'bg-success-100' }
+            };
+
+            const categoryIcons = {
+                food: '🍽️',
+                emergency: '🚨',
+                transportation: '🚗',
+                elderly_care: '👴',
+                medical: '💊',
+                household: '🏠',
+                other: '📋'
+            };
+
+            const status = statusConfig[request.status] || statusConfig.pending;
+            const icon = categoryIcons[request.category] || '📋';
+            const createdAt = request.createdAt ? new Date(request.createdAt.toDate()).toLocaleDateString() : 'Unknown';
+
+            return `
+                <div class="border border-border rounded-xl p-4 hover:shadow-md transition-standard">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-3">
+                        <div class="flex-1">
+                            <div class="flex items-start gap-3 mb-2">
+                                <div class="w-10 h-10 ${status.color} rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <span class="text-xl">${icon}</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-semibold text-text-primary mb-1">${request.title}</h3>
+                                    <p class="text-sm text-text-secondary mb-2">${request.description.substring(0, 100)}${request.description.length > 100 ? '...' : ''}</p>
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <span class="${status.class}">${status.text}</span>
+                                        <span class="text-xs text-text-secondary">•</span>
+                                        <span class="text-xs text-text-secondary">${request.category.replace('_', ' ')}</span>
+                                        <span class="text-xs text-text-secondary">•</span>
+                                        <span class="text-xs text-text-secondary">${request.location}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-border">
+                        <span class="text-xs text-text-secondary">Created ${createdAt}</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="viewRequest('${request.id}')" class="btn-outline py-1 px-3 text-sm">
+                                View
+                            </button>
+                            ${request.status === 'pending' ? 
+                                `<button onclick="editRequest('${request.id}')" class="btn-outline py-1 px-3 text-sm text-primary border-primary hover:bg-primary-50">
+                                    Edit
+                                </button>
+                                <button onclick="deleteRequest('${request.id}')" class="btn-outline py-1 px-3 text-sm text-error border-error hover:bg-error-50">
+                                    Delete
+                                </button>` : 
+                                `<span class="text-xs text-success font-medium px-3 py-1 bg-success-50 rounded">
+                                    ${request.status.charAt(0).toUpperCase() + request.status.slice(1).replace('_', ' ')}
+                                </span>`
+                            }
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // View request function
+        window.viewRequest = function(requestId) {
+            const request = allRequests.find(r => r.id === requestId);
+            if (!request) return;
+            
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-semibold">${request.title}</h2>
+                            <button onclick="this.closest('.fixed').remove()" class="text-gray-500 hover:text-gray-700">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="space-y-4">
+                            <div><strong>Description:</strong> ${request.description}</div>
+                            <div><strong>Category:</strong> ${request.category}</div>
+                            <div><strong>Location:</strong> ${request.location}</div>
+                            <div><strong>Urgency:</strong> ${request.urgency}</div>
+                            <div><strong>Status:</strong> ${request.status}</div>
+                            <div><strong>Contact Methods:</strong> ${request.contactMethods?.join(', ') || 'N/A'}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        };
+        
+        // Edit request function
+        window.editRequest = function(requestId) {
+            window.location.href = `create_request.html?edit=${requestId}`;
+        };
+        
+        // Delete request function
+        window.deleteRequest = async function(requestId) {
+            if (!confirm('Are you sure you want to delete this request?')) return;
+            
+            try {
+                await deleteDoc(doc(db, 'requests', requestId));
+                alert('Request deleted successfully');
+            } catch (error) {
+                console.error('Error deleting request:', error);
+                alert('Error deleting request');
+            }
+        };
+
+
+
+        // Load available volunteers with real-time updates
+        function loadAvailableVolunteers() {
+            try {
+                console.log('Loading volunteers for province:', currentUser.province);
+                const volunteersQuery = query(
+                    collection(db, 'users'),
+                    where('role', '==', 'volunteer')
+                );
+                
+                // Use real-time listener to get availability updates
+                onSnapshot(volunteersQuery, (snapshot) => {
+                    const allVolunteers = [];
+                    snapshot.forEach(doc => {
+                        allVolunteers.push({ id: doc.id, ...doc.data() });
+                    });
+                    console.log('All volunteers found:', allVolunteers.length, allVolunteers);
+                    
+                    // Filter by province
+                    const volunteers = allVolunteers.filter(v => v.province === currentUser.province);
+                    console.log('Volunteers in same province:', volunteers.length, volunteers);
+                    
+                    updateVolunteersUI(volunteers);
+                });
+            } catch (error) {
+                console.error('Error loading volunteers:', error);
+            }
+        }
+
+        // Update volunteers UI
+        function updateVolunteersUI(volunteers) {
+            const volunteersList = document.getElementById('volunteersList');
+            if (!volunteersList) return;
+
+            if (volunteers.length === 0) {
+                volunteersList.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h4 class="font-medium text-text-primary text-sm mb-1">No volunteers found</h4>
+                        <p class="text-xs text-text-secondary">No volunteers available in your area</p>
+                    </div>
+                `;
+                return;
+            }
+
+            volunteersList.innerHTML = volunteers.slice(0, 5).map(volunteer => {
+                const isAvailable = volunteer.available !== false; // Default to available if not set
+                const statusColor = isAvailable ? 'text-success' : 'text-error';
+                const statusText = isAvailable ? 'Available' : 'Unavailable';
+                
+                return `
+                    <div class="flex items-center gap-3 p-3 bg-surface rounded-lg hover:bg-secondary-50 transition-micro">
+                        <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
+                            ${volunteer.fullName.charAt(0).toUpperCase()}
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-medium text-text-primary text-sm">${volunteer.fullName}</div>
+                            <div class="text-xs text-text-secondary">${volunteer.verified ? '✓ Verified' : 'Unverified'}</div>
+                        </div>
+                        <div class="text-xs ${statusColor} font-medium">${statusText}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Load volunteers that can be rated
+        function loadRatableVolunteers(requests) {
+            const completedRequests = requests.filter(req => 
+                req.status === 'completed' && req.acceptedBy
+            );
+            updateRatingsUI(completedRequests);
+        }
+
+        // Update ratings UI
+        function updateRatingsUI(completedRequests) {
+            const ratingsList = document.getElementById('ratingsList');
+            if (!ratingsList) return;
+
+            if (completedRequests.length === 0) {
+                ratingsList.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#F59E0B">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-medium text-text-primary text-sm mb-1">No completed tasks</h4>
+                        <p class="text-xs text-text-secondary">Rate volunteers after they help you</p>
+                    </div>
+                `;
+                return;
+            }
+
+            ratingsList.innerHTML = completedRequests.map(request => `
+                <div class="p-3 bg-surface rounded-lg">
+                    <div class="font-medium text-text-primary text-sm mb-2">${request.title}</div>
+                    <div class="text-xs text-text-secondary mb-3">Completed task</div>
+                    <div class="flex items-center gap-1 mb-2">
+                        ${[1,2,3,4,5].map(star => `
+                            <button onclick="rateVolunteer('${request.id}', '${request.acceptedBy}', ${star})" 
+                                    class="star-btn text-gray-300 hover:text-yellow-400 transition-colors" 
+                                    data-request="${request.id}" data-star="${star}">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                            </button>
+                        `).join('')}
+                    </div>
+                    <button onclick="submitRating('${request.id}', '${request.acceptedBy}')" 
+                            class="btn-primary text-xs w-full" 
+                            id="submit-${request.id}" disabled>
+                        Submit Rating
+                    </button>
+                </div>
+            `).join('');
+
+            // Add star rating functionality
+            document.querySelectorAll('.star-btn').forEach(btn => {
+                // Hover effects
+                btn.addEventListener('mouseenter', (e) => {
+                    const requestId = btn.dataset.request;
+                    const starValue = parseInt(btn.dataset.star);
+                    
+                    // Highlight stars on hover
+                    document.querySelectorAll(`[data-request="${requestId}"]`).forEach((star, index) => {
+                        if (index < starValue) {
+                            star.classList.remove('text-gray-300');
+                            star.classList.add('text-yellow-400');
+                        } else {
+                            star.classList.remove('text-yellow-400');
+                            star.classList.add('text-gray-300');
+                        }
+                    });
+                });
+                
+                // Reset on mouse leave (unless clicked)
+                btn.addEventListener('mouseleave', (e) => {
+                    const requestId = btn.dataset.request;
+                    const submitBtn = document.getElementById(`submit-${requestId}`);
+                    const selectedRating = submitBtn.dataset.rating;
+                    
+                    if (!selectedRating) {
+                        // Reset all stars if no rating selected
+                        document.querySelectorAll(`[data-request="${requestId}"]`).forEach(star => {
+                            star.classList.remove('text-yellow-400');
+                            star.classList.add('text-gray-300');
+                        });
+                    } else {
+                        // Show selected rating
+                        document.querySelectorAll(`[data-request="${requestId}"]`).forEach((star, index) => {
+                            if (index < parseInt(selectedRating)) {
+                                star.classList.remove('text-gray-300');
+                                star.classList.add('text-yellow-400');
+                            } else {
+                                star.classList.remove('text-yellow-400');
+                                star.classList.add('text-gray-300');
+                            }
+                        });
+                    }
+                });
+                
+                // Click to select rating
+                btn.addEventListener('click', (e) => {
+                    const requestId = btn.dataset.request;
+                    const starValue = parseInt(btn.dataset.star);
+                    
+                    // Update visual state
+                    document.querySelectorAll(`[data-request="${requestId}"]`).forEach((star, index) => {
+                        if (index < starValue) {
+                            star.classList.remove('text-gray-300');
+                            star.classList.add('text-yellow-400');
+                        } else {
+                            star.classList.remove('text-yellow-400');
+                            star.classList.add('text-gray-300');
+                        }
+                    });
+                    
+                    // Enable submit button
+                    document.getElementById(`submit-${requestId}`).disabled = false;
+                    document.getElementById(`submit-${requestId}`).dataset.rating = starValue;
+                });
+            });
+        }
+
+        // Rate volunteer function
+        window.rateVolunteer = function(requestId, volunteerId, rating) {
+            // This is handled by the event listener above
+        };
+
+        // Apply filters to requests
+        function applyFilters() {
+            let filteredRequests = allUserRequests;
+            
+            // Filter by status
+            if (currentFilters.status !== 'all') {
+                filteredRequests = filteredRequests.filter(req => req.status === currentFilters.status);
+            }
+            
+            // Filter by category
+            if (currentFilters.category !== 'all') {
+                filteredRequests = filteredRequests.filter(req => req.category === currentFilters.category);
+            }
+            
+            console.log('Filtered requests:', filteredRequests.length, 'Status:', currentFilters.status, 'Category:', currentFilters.category);
+            updateRequestsUI(filteredRequests);
+        }
+        
+        // Setup filter event listeners
+        function setupFilters() {
+            const statusFilter = document.getElementById('statusFilter');
+            const categoryFilter = document.getElementById('categoryFilter');
+            
+            if (statusFilter) {
+                statusFilter.addEventListener('change', (e) => {
+                    currentFilters.status = e.target.value;
+                    applyFilters();
+                });
+            }
+            
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', (e) => {
+                    currentFilters.category = e.target.value;
+                    applyFilters();
+                });
+            }
+        }
+
+        // Submit rating function
+        window.submitRating = async function(requestId, volunteerId) {
+            const submitBtn = document.getElementById(`submit-${requestId}`);
+            const rating = parseInt(submitBtn.dataset.rating);
+            
+            if (!rating) {
+                alert('Please select a rating');
+                return;
+            }
+
+            try {
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+
+                // Save rating to Firestore
+                await setDoc(doc(db, 'ratings', `${requestId}_${currentUser.uid}`), {
+                    requestId,
+                    volunteerId,
+                    citizenId: currentUser.uid,
+                    rating,
+                    createdAt: serverTimestamp()
+                });
+
+                submitBtn.textContent = 'Rated!';
+                submitBtn.classList.add('opacity-50');
+                
+                // Remove from UI after delay
+                setTimeout(() => {
+                    submitBtn.closest('.p-3').remove();
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error submitting rating:', error);
+                submitBtn.textContent = 'Submit Rating';
+                submitBtn.disabled = false;
+                alert('Failed to submit rating');
+            }
+        };
+
+
+
+        // Logout functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    try {
+                        await logout();
+                        window.location.href = 'login.html';
+                    } catch (error) {
+                        console.error('Logout error:', error);
+                        window.location.href = 'login.html';
+                    }
+                });
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Profile dropdown toggle
+        const profileBtn = document.getElementById('profileBtn');
+        const profileDropdown = document.getElementById('profileDropdown');
+
+        if (profileBtn && profileDropdown) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('hidden');
+            });
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (profileBtn && profileDropdown && !profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
+                profileDropdown.classList.add('hidden');
+            }
+            if (mobileMenuBtn && mobileMenu && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded, waiting for auth state...');
+            setupFilters(); // Setup filter event listeners
+            
+            // Wait for auth state to be ready
+            onAuthStateChanged(auth, (user) => {
+                console.log('Auth state changed:', user ? 'logged in' : 'logged out');
+                if (user) {
+                    initDashboard();
+                } else {
+                    console.log('User not authenticated, redirecting...');
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (requestsUnsubscribe) {
+                requestsUnsubscribe();
+            }
+        });
+    </script>
+
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>

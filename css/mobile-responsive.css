@@ -1,0 +1,370 @@
+/* Mobile-First Responsive Design Enhancements */
+
+/* Base mobile styles */
+@media (max-width: 640px) {
+    /* Container adjustments */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    /* Typography scaling */
+    h1 {
+        font-size: 1.875rem; /* 30px */
+        line-height: 2.25rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem; /* 24px */
+        line-height: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem; /* 20px */
+        line-height: 1.75rem;
+    }
+    
+    /* Card adjustments */
+    .card-elevated {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Button adjustments */
+    .btn-primary,
+    .btn-outline {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Form elements */
+    .input {
+        padding: 0.75rem;
+        font-size: 1rem;
+    }
+    
+    /* Grid adjustments */
+    .grid-cols-1.md\:grid-cols-2,
+    .grid-cols-1.md\:grid-cols-3,
+    .grid-cols-1.md\:grid-cols-4,
+    .grid-cols-1.md\:grid-cols-5 {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    
+    /* Quick actions mobile layout */
+    .grid.grid-cols-1.md\:grid-cols-5 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    /* Modal adjustments */
+    .fixed.inset-0 > div {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+        width: calc(100% - 2rem);
+    }
+    
+    /* Navigation adjustments */
+    .hidden.md\:flex {
+        display: none !important;
+    }
+    
+    /* Statistics cards mobile */
+    .grid.grid-cols-1.md\:grid-cols-3 .text-3xl {
+        font-size: 2rem;
+    }
+    
+    /* Request cards mobile */
+    .flex.flex-col.md\:flex-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Sidebar mobile */
+    .lg\:col-span-1 {
+        order: -1;
+        margin-bottom: 2rem;
+    }
+    
+    /* Filter controls mobile */
+    .flex.flex-col.md\:flex-row.md\:items-center {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    
+    .flex.flex-wrap.items-center.gap-3 {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .flex.flex-wrap.items-center.gap-3 select,
+    .flex.flex-wrap.items-center.gap-3 button {
+        width: 100%;
+    }
+}
+
+/* Tablet styles */
+@media (min-width: 641px) and (max-width: 1024px) {
+    /* Grid adjustments for tablet */
+    .grid-cols-1.md\:grid-cols-5 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    .grid-cols-1.md\:grid-cols-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    /* Card padding */
+    .card-elevated {
+        padding: 1.5rem;
+    }
+    
+    /* Button sizing */
+    .btn-primary,
+    .btn-outline {
+        padding: 0.625rem 1.25rem;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    button,
+    .btn-primary,
+    .btn-outline,
+    a[class*="btn"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .hover\:shadow-lg:hover {
+        box-shadow: var(--shadow-elevated);
+    }
+    
+    .hover\:bg-primary-50:hover {
+        background-color: var(--primary-50);
+    }
+    
+    /* Improve form controls */
+    input,
+    select,
+    textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Landscape phone adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+    /* Reduce vertical spacing */
+    .py-8 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    
+    .mb-8 {
+        margin-bottom: 1rem;
+    }
+    
+    /* Compact header */
+    header {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Ensure crisp icons and images */
+    svg {
+        shape-rendering: geometricPrecision;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-surface: #1f2937;
+        --text-primary: #f9fafb;
+        --text-secondary: #d1d5db;
+        --border: #374151;
+    }
+    
+    body {
+        background-color: var(--bg-surface);
+        color: var(--text-primary);
+    }
+    
+    .bg-white {
+        background-color: #374151;
+    }
+    
+    .text-gray-900 {
+        color: var(--text-primary);
+    }
+    
+    .text-gray-600 {
+        color: var(--text-secondary);
+    }
+    
+    .border-gray-300 {
+        border-color: var(--border);
+    }
+}
+
+/* Print styles */
+@media print {
+    /* Hide navigation and interactive elements */
+    header,
+    .btn-primary,
+    .btn-outline,
+    button {
+        display: none !important;
+    }
+    
+    /* Optimize for print */
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    .card-elevated {
+        border: 1px solid #000;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+    
+    /* Ensure good contrast */
+    * {
+        color: #000 !important;
+        background: #fff !important;
+    }
+}
+
+/* Focus improvements for keyboard navigation */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+a:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Error states */
+.error {
+    border-color: var(--error) !important;
+    background-color: var(--error-50) !important;
+}
+
+.error-message {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Success states */
+.success {
+    border-color: var(--success) !important;
+    background-color: var(--success-50) !important;
+}
+
+.success-message {
+    color: var(--success);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Utility classes for mobile */
+.mobile-hidden {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-hidden {
+        display: block;
+    }
+}
+
+.mobile-only {
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .mobile-only {
+        display: none;
+    }
+}
+
+/* Safe area adjustments for notched devices */
+@supports (padding: max(0px)) {
+    .safe-area-inset-top {
+        padding-top: max(1rem, env(safe-area-inset-top));
+    }
+    
+    .safe-area-inset-bottom {
+        padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+    
+    .safe-area-inset-left {
+        padding-left: max(1rem, env(safe-area-inset-left));
+    }
+    
+    .safe-area-inset-right {
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+}

@@ -1,0 +1,71 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read/write their own data, and read other users for volunteer listings
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Ratings collection
+    match /ratings/{ratingId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Reviews collection - detailed reviews beyond ratings
+    match /reviews/{reviewId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && request.auth.uid == resource.data.reviewerId;
+    }
+    
+    // Verification requests
+    match /verificationRequests/{requestId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == resource.data.userId;
+    }
+    
+    // Request templates - public read, authenticated write
+    match /requestTemplates/{templateId} {
+      allow read: if true; // Allow anyone to read templates
+      allow write: if request.auth != null; // Allow authenticated users to create/update templates
+    }
+    
+    // Community board posts
+    match /communityPosts/{postId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && request.auth.uid == resource.data.authorId;
+    }
+    
+    // Success stories
+    match /successStories/{storyId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && request.auth.uid == resource.data.authorId;
+    }
+    
+    // Volunteer groups
+    match /volunteerGroups/{groupId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && request.auth.uid in resource.data.members;
+    }
+    
+    // Requests are readable by all authenticated users
+    match /requests/{requestId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && 
+        (request.auth.uid == resource.data.createdBy || 
+         request.auth.uid == resource.data.acceptedBy ||
+         (request.auth.uid == request.resource.data.acceptedBy && resource.data.status == 'pending'));
+      allow delete: if request.auth != null && request.auth.uid == resource.data.createdBy;
+      
+      // Messages subcollection
+      match /messages/{messageId} {
+        allow read, create: if request.auth != null;
+      }
+    }
+  }
+}

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a new assistance request - Community Help Platform">
+    <title>Create Request - Community Help Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body class="bg-surface">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-border sticky top-0 z-50 shadow-subtle">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <a href="citizen_dashboard.html" class="flex items-center gap-3">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-label="Community Help Platform Logo">
+                            <circle cx="20" cy="20" r="18" fill="#3B82F6" opacity="0.1" />
+                            <path
+                                d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                                fill="#3B82F6" />
+                        </svg>
+                        <span class="text-xl font-semibold text-text-primary">Community Help</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="citizen_dashboard.html"
+                        class="text-text-secondary hover:text-primary transition-micro flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 10L10 3L17 10M5 8V17H8V13H12V17H15V8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="create_request.html" class="text-primary font-medium flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        New Request
+                    </a>
+                    <div class="relative">
+                        <button id="userMenuBtn"
+                            class="flex items-center gap-2 p-2 rounded-lg hover:bg-surface transition-micro"
+                            aria-label="User menu">
+                            <div id="profileAvatar" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm">
+                                U
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M5.293 6.293a1 1 0 011.414 0L8 7.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="userMenu"
+                            class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-elevated border border-border py-2">
+                            <a href="citizen_dashboard.html"
+                                class="block px-4 py-2 text-text-secondary hover:bg-surface transition-micro">My
+                                Profile</a>
+                            <a href="citizen_dashboard.html"
+                                class="block px-4 py-2 text-text-secondary hover:bg-surface transition-micro">Settings</a>
+                            <hr class="my-2 border-border">
+                            <a href="landing_page.html"
+                                class="block px-4 py-2 text-error hover:bg-error-50 transition-micro">Logout</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface transition-micro"
+                    aria-label="Toggle mobile menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="citizen_dashboard.html"
+                        class="text-text-secondary hover:text-primary transition-micro py-2 flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 10L10 3L17 10M5 8V17H8V13H12V17H15V8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Dashboard
+                    </a>
+                    <a href="create_request.html" class="text-primary font-medium py-2 flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        New Request
+                    </a>
+                    <hr class="border-border">
+                    <a href="citizen_dashboard.html"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">My Profile</a>
+                    <a href="citizen_dashboard.html"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">Settings</a>
+                    <a href="landing_page.html" class="text-error hover:text-error-600 transition-micro py-2">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <a href="citizen_dashboard.html" class="p-2 rounded-lg hover:bg-white transition-micro"
+                    aria-label="Back to dashboard">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                </a>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 class="text-3xl font-bold text-text-primary">Create New Request</h1>
+                            <p class="text-text-secondary mt-1">Fill in the details below to request community assistance</p>
+                        </div>
+                        <a href="request_templates.html" class="hidden sm:flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm bg-blue-50 px-3 py-2 rounded-md">
+                            📋 Use Template
+                        </a>
+                    </div>
+                    
+                    <!-- Template Info (if using template) -->
+                    <div id="templateInfo" class="hidden bg-blue-50 border border-blue-200 rounded-md p-3 mt-4">
+                        <p class="text-sm text-blue-800">Using template: <span id="templateName" class="font-semibold"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Indicator -->
+            <div class="bg-white rounded-lg p-4 shadow-subtle">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium text-text-primary">Form Progress</span>
+                    <span class="text-sm text-text-secondary" id="progressText">0% Complete</span>
+                </div>
+                <div class="w-full bg-secondary-200 rounded-full h-2">
+                    <div id="progressBar" class="bg-primary h-2 rounded-full transition-standard" style="width: 0%">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Request Form -->
+        <form id="requestForm" class="space-y-6">
+            <!-- Basic Information Card -->
+            <div class="card-elevated">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-primary-100 rounded-lg flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#3B82F6" stroke-width="2">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                            <path
+                                d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-text-primary">Basic Information</h2>
+                        <p class="text-sm text-text-secondary">Provide essential details about your request</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Request Title -->
+                    <div>
+                        <label for="requestTitle" class="block text-sm font-medium text-text-primary mb-2">
+                            Request Title <span class="text-error">*</span>
+                        </label>
+                        <input type="text" id="requestTitle" name="requestTitle" class="input"
+                            placeholder="e.g., Need help with grocery shopping" maxlength="100" required />
+                        <div class="flex justify-between mt-1">
+                            <span class="text-xs text-text-secondary">Be clear and specific about what you need</span>
+                            <span class="text-xs text-text-secondary" id="titleCount">0/100</span>
+                        </div>
+                    </div>
+
+                    <!-- Request Description -->
+                    <div>
+                        <label for="requestDescription" class="block text-sm font-medium text-text-primary mb-2">
+                            Detailed Description <span class="text-error">*</span>
+                        </label>
+                        <textarea id="requestDescription" name="requestDescription" rows="6" class="input resize-none"
+                            placeholder="Provide detailed information about your request, including any specific requirements, time preferences, or special instructions..."
+                            maxlength="1000" required></textarea>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-xs text-text-secondary">Include all relevant details to help volunteers
+                                understand your needs</span>
+                            <span class="text-xs text-text-secondary" id="descCount">0/1000</span>
+                        </div>
+                    </div>
+
+                    <!-- Category Selection -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="category" class="block text-sm font-medium text-text-primary mb-2">
+                                Category <span class="text-error">*</span>
+                            </label>
+                            <select id="category" name="category" class="input" required>
+                                <option value="">Select a category</option>
+                                <option value="food">🍽️ Food Assistance</option>
+                                <option value="emergency">🚨 Emergency Help</option>
+                                <option value="transportation">🚗 Transportation</option>
+                                <option value="elderly_care">👴 Elderly Care</option>
+                                <option value="medical">💊 Medical Support</option>
+                                <option value="household">🏠 Household Tasks</option>
+                                <option value="other">📋 Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Province Selection -->
+                        <div>
+                            <label for="district" class="block text-sm font-medium text-text-primary mb-2">
+                                Province <span class="text-error">*</span>
+                            </label>
+                            <select id="district" name="district" class="input" required>
+                                <option value="">Select your province</option>
+                                <option value="northern">Northern Province</option>
+                                <option value="southern">Southern Province</option>
+                                <option value="eastern">Eastern Province</option>
+                                <option value="western">Western Province</option>
+                                <option value="kigali">City of Kigali</option>
+                            </select>
+                            <p class="text-xs text-text-secondary mt-1">Volunteers in your province will be notified</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Details Card -->
+            <div class="card-elevated">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#0EA5E9" stroke-width="2">
+                            <path d="M13 2H6a2 2 0 00-2 2v16l4-2 4 2 4-2V4a2 2 0 00-2-2z" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-text-primary">Additional Details</h2>
+                        <p class="text-sm text-text-secondary">Help us match you with the right volunteer</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Urgency Level -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-3">
+                            Urgency Level <span class="text-error">*</span>
+                        </label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="urgency" value="low" class="peer sr-only" required />
+                                <div
+                                    class="border-2 border-border rounded-lg p-4 text-center transition-standard peer-checked:border-success peer-checked:bg-success-50 hover:border-success-300">
+                                    <div class="text-2xl mb-1">🟢</div>
+                                    <div class="font-medium text-sm">Low</div>
+                                    <div class="text-xs text-text-secondary">Within a week</div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="urgency" value="medium" class="peer sr-only" />
+                                <div
+                                    class="border-2 border-border rounded-lg p-4 text-center transition-standard peer-checked:border-warning peer-checked:bg-warning-50 hover:border-warning-300">
+                                    <div class="text-2xl mb-1">🟡</div>
+                                    <div class="font-medium text-sm">Medium</div>
+                                    <div class="text-xs text-text-secondary">Within 2-3 days</div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="radio" name="urgency" value="high" class="peer sr-only" />
+                                <div
+                                    class="border-2 border-border rounded-lg p-4 text-center transition-standard peer-checked:border-error peer-checked:bg-error-50 hover:border-error-300">
+                                    <div class="text-2xl mb-1">🔴</div>
+                                    <div class="font-medium text-sm">High</div>
+                                    <div class="text-xs text-text-secondary">Within 24 hours</div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer col-span-3">
+                                <input type="radio" name="urgency" value="emergency" class="peer sr-only" />
+                                <div
+                                    class="border-2 border-border rounded-lg p-4 text-center transition-standard peer-checked:border-red-600 peer-checked:bg-red-50 hover:border-red-300">
+                                    <div class="text-2xl mb-1">🚨</div>
+                                    <div class="font-medium text-sm text-red-600">Emergency</div>
+                                    <div class="text-xs text-text-secondary">Immediate assistance needed</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferred Contact Method -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-3">
+                            Preferred Contact Method <span class="text-error">*</span>
+                        </label>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <label class="relative cursor-pointer">
+                                <input type="checkbox" name="contact" value="phone" class="peer sr-only" />
+                                <div
+                                    class="border-2 border-border rounded-lg p-3 text-center transition-standard peer-checked:border-primary peer-checked:bg-primary-50 hover:border-primary-300">
+                                    <svg class="w-6 h-6 mx-auto mb-2" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path
+                                            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" />
+                                    </svg>
+                                    <div class="font-medium text-sm">Phone</div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="checkbox" name="contact" value="message" class="peer sr-only" />
+                                <div
+                                    class="border-2 border-border rounded-lg p-3 text-center transition-standard peer-checked:border-primary peer-checked:bg-primary-50 hover:border-primary-300">
+                                    <svg class="w-6 h-6 mx-auto mb-2" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+                                    </svg>
+                                    <div class="font-medium text-sm">Message</div>
+                                </div>
+                            </label>
+                            <label class="relative cursor-pointer">
+                                <input type="checkbox" name="contact" value="email" class="peer sr-only" />
+                                <div
+                                    class="border-2 border-border rounded-lg p-3 text-center transition-standard peer-checked:border-primary peer-checked:bg-primary-50 hover:border-primary-300">
+                                    <svg class="w-6 h-6 mx-auto mb-2" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path
+                                            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                                        <polyline points="22,6 12,13 2,6" />
+                                    </svg>
+                                    <div class="font-medium text-sm">Email</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preferred Time -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="preferredDate" class="block text-sm font-medium text-text-primary mb-2">
+                                Preferred Date
+                            </label>
+                            <input type="date" id="preferredDate" name="preferredDate" class="input" min="2025-12-10" />
+                        </div>
+                        <div>
+                            <label for="preferredTime" class="block text-sm font-medium text-text-primary mb-2">
+                                Preferred Time
+                            </label>
+                            <select id="preferredTime" name="preferredTime" class="input">
+                                <option value="">Any time</option>
+                                <option value="morning">Morning (8AM - 12PM)</option>
+                                <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                                <option value="evening">Evening (5PM - 8PM)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Upload Card -->
+            <div class="card-elevated">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-success-100 rounded-lg flex items-center justify-center">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#10B981" stroke-width="2">
+                            <rect x="3" y="3" width="14" height="14" rx="2" ry="2" />
+                            <circle cx="8.5" cy="8.5" r="1.5" />
+                            <polyline points="21 15 16 10 5 21" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-text-primary">Attachments (Optional)</h2>
+                        <p class="text-sm text-text-secondary">Add photos to help volunteers understand your request
+                            better</p>
+                    </div>
+                </div>
+
+                <!-- Drag and Drop Area -->
+                <div id="dropZone"
+                    class="border-2 border-dashed border-border rounded-lg p-8 text-center hover:border-primary hover:bg-primary-50 transition-standard cursor-pointer">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-text-secondary" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                    </svg>
+                    <p class="text-text-primary font-medium mb-1">Drag and drop images here</p>
+                    <p class="text-sm text-text-secondary mb-4">or click to browse from your device</p>
+                    <input type="file" id="fileInput" name="images" accept="image/*" multiple class="hidden" />
+                    <button type="button" id="browseBtn" class="btn-outline">
+                        <svg class="inline-block w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                        </svg>
+                        Browse Files
+                    </button>
+                    <p class="text-xs text-text-secondary mt-3">Maximum 5 images, 5MB each (JPG, PNG, GIF)</p>
+                </div>
+
+                <!-- Image Preview Area -->
+                <div id="imagePreview" class="hidden mt-6">
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-medium text-text-primary">Uploaded Images</h3>
+                        <button type="button" id="clearAllBtn"
+                            class="text-sm text-error hover:text-error-600 transition-micro">Clear All</button>
+                    </div>
+                    <div id="previewGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+                </div>
+            </div>
+
+            <!-- Estimated Processing Time -->
+            <div class="bg-primary-50 border border-primary-200 rounded-lg p-4">
+                <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-primary mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <div>
+                        <h3 class="font-medium text-primary mb-1">What happens next?</h3>
+                        <ul class="text-sm text-text-secondary space-y-1">
+                            <li>• Your request will be reviewed and posted within 5 minutes</li>
+                            <li>• Verified volunteers in your district will be notified immediately</li>
+                            <li>• You'll receive real-time updates when volunteers accept your request</li>
+                            <li>• Average response time: 30 minutes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <button type="button" id="saveDraftBtn" class="btn-outline flex-1 sm:flex-none">
+                    <svg class="inline-block w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
+                    </svg>
+                    Save Draft
+                </button>
+                <button type="submit" class="btn-primary flex-1">
+                    <svg class="inline-block w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                            d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                    </svg>
+                    Submit Request
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <!-- Success Modal (Hidden by default) -->
+    <div id="successModal"
+        class="hidden fixed inset-0 bg-secondary-900 bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-elevated max-w-md w-full p-6 transform transition-standard">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-success" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-semibold text-text-primary mb-2">Request Submitted Successfully!</h3>
+                <p class="text-text-secondary mb-6">Your request has been posted and volunteers in your district have
+                    been notified. You'll receive updates in real-time.</p>
+                <div class="flex gap-3">
+                    <a href="citizen_dashboard.html" class="btn-outline flex-1">View Dashboard</a>
+                    <button type="button" id="createAnotherBtn" class="btn-primary flex-1">Create Another</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-900 text-white py-8 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-label="Community Help Platform Logo">
+                            <circle cx="20" cy="20" r="18" fill="white" opacity="0.1" />
+                            <path
+                                d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                                fill="white" />
+                        </svg>
+                        <span class="text-lg font-semibold">Community Help</span>
+                    </div>
+                    <p class="text-sm text-secondary-400">
+                        Connecting communities through verified assistance and real-time support.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-secondary-400">
+                        <li><a href="citizen_dashboard.html" class="hover:text-white transition-micro">Dashboard</a>
+                        </li>
+                        <li><a href="create_request.html" class="hover:text-white transition-micro">Create Request</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">My Requests</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Safety Guidelines</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm text-secondary-400">
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">FAQs</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Report Issue</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-secondary-400">
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Privacy Policy</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Terms of Service</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Cookie Policy</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Community
+                                Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-secondary-800 pt-6 text-center">
+                <p class="text-sm text-secondary-400">
+                    © 2025 Community Help Platform. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="module">
+        import { requireAuth } from '../js/auth-guard.js';
+        import { createRequest } from '../js/requests.js';
+        import { getCurrentUserData } from '../js/auth.js';
+
+        // Protect this page - require citizen role
+        requireAuth('citizen').catch(() => {
+            // Redirect handled by requireAuth
+        });
+
+        let currentUser = null;
+        
+        // Get current user data
+        async function initializeUser() {
+            try {
+                currentUser = await getCurrentUserData();
+                if (currentUser) {
+                    // Update profile avatar with first name initial
+                    const profileAvatar = document.getElementById('profileAvatar');
+                    if (profileAvatar && currentUser.fullName) {
+                        profileAvatar.textContent = currentUser.fullName.charAt(0).toUpperCase();
+                    }
+                    // Pre-fill district if available
+                    if (currentUser.province) {
+                        document.getElementById('district').value = currentUser.province;
+                    }
+                }
+            } catch (error) {
+                console.error('Error getting user data:', error);
+            }
+        }
+        
+        // Initialize user data
+        initializeUser();
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const userMenuBtn = document.getElementById('userMenuBtn');
+        const userMenu = document.getElementById('userMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        userMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+
+        // Close menus when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+            if (!userMenuBtn.contains(e.target) && !userMenu.contains(e.target)) {
+                userMenu.classList.add('hidden');
+            }
+        });
+
+        // Form progress tracking
+        const form = document.getElementById('requestForm');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const requiredFields = form.querySelectorAll('[required]');
+
+        function updateProgress() {
+            let filledFields = 0;
+            requiredFields.forEach(field => {
+                if (field.type === 'radio') {
+                    if (form.querySelector(`input[name="${field.name}"]:checked`)) {
+                        filledFields++;
+                    }
+                } else if (field.value.trim() !== '') {
+                    filledFields++;
+                }
+            });
+
+            const progress = Math.round((filledFields / requiredFields.length) * 100);
+            progressBar.style.width = progress + '%';
+            progressText.textContent = progress + '% Complete';
+        }
+
+        // Character counters
+        const titleInput = document.getElementById('requestTitle');
+        const titleCount = document.getElementById('titleCount');
+        const descInput = document.getElementById('requestDescription');
+        const descCount = document.getElementById('descCount');
+
+        titleInput.addEventListener('input', (e) => {
+            titleCount.textContent = e.target.value.length + '/100';
+            updateProgress();
+        });
+
+        descInput.addEventListener('input', (e) => {
+            descCount.textContent = e.target.value.length + '/1000';
+            updateProgress();
+        });
+
+        // Update progress on all input changes
+        form.addEventListener('change', updateProgress);
+        form.addEventListener('input', updateProgress);
+
+        // File upload functionality
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        const browseBtn = document.getElementById('browseBtn');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewGrid = document.getElementById('previewGrid');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        let uploadedFiles = [];
+
+        browseBtn.addEventListener('click', () => fileInput.click());
+
+        dropZone.addEventListener('click', (e) => {
+            if (e.target === dropZone || e.target.closest('#dropZone')) {
+                fileInput.click();
+            }
+        });
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropZone.classList.add('border-primary', 'bg-primary-50');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('border-primary', 'bg-primary-50');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('border-primary', 'bg-primary-50');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(files) {
+            const maxFiles = 5;
+            const maxSize = 5 * 1024 * 1024; // 5MB
+
+            if (uploadedFiles.length + files.length > maxFiles) {
+                alert(`You can only upload up to ${maxFiles} images`);
+                return;
+            }
+
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith('image/')) {
+                    alert('Please upload only image files');
+                    return;
+                }
+
+                if (file.size > maxSize) {
+                    alert('Each image must be less than 5MB');
+                    return;
+                }
+
+                uploadedFiles.push(file);
+                displayImage(file);
+            });
+
+            if (uploadedFiles.length > 0) {
+                imagePreview.classList.remove('hidden');
+            }
+        }
+
+        function displayImage(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const div = document.createElement('div');
+                div.className = 'relative group';
+                div.innerHTML = `
+                    <div class="aspect-square rounded-lg overflow-hidden border border-border">
+                        <img src="${e.target.result}" alt="Preview of uploaded image for assistance request" class="w-full h-full object-cover" />
+                    </div>
+                    <button type="button" class="absolute top-2 right-2 w-8 h-8 bg-error text-white rounded-full opacity-0 group-hover:opacity-100 transition-micro flex items-center justify-center" onclick="removeImage(this, '${file.name}')">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L8 6.586l2.293-2.293a1 1 0 111.414 1.414L9.414 8l2.293 2.293a1 1 0 01-1.414 1.414L8 9.414l-2.293 2.293a1 1 0 01-1.414-1.414L6.586 8 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                `;
+                previewGrid.appendChild(div);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        window.removeImage = function (btn, fileName) {
+            uploadedFiles = uploadedFiles.filter(f => f.name !== fileName);
+            btn.parentElement.remove();
+
+            if (uploadedFiles.length === 0) {
+                imagePreview.classList.add('hidden');
+            }
+        };
+
+        clearAllBtn.addEventListener('click', () => {
+            uploadedFiles = [];
+            previewGrid.innerHTML = '';
+            imagePreview.classList.add('hidden');
+            fileInput.value = '';
+        });
+
+        // Form submission
+        const successModal = document.getElementById('successModal');
+        const createAnotherBtn = document.getElementById('createAnotherBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Validate at least one contact method is selected
+            const contactMethods = form.querySelectorAll('input[name="contact"]:checked');
+            if (contactMethods.length === 0) {
+                alert('Please select at least one preferred contact method');
+                return;
+            }
+
+            // Ensure we have current user data
+            if (!currentUser) {
+                try {
+                    currentUser = await getCurrentUserData();
+                } catch (error) {
+                    console.error('Error getting user data:', error);
+                }
+            }
+            
+            if (!currentUser) {
+                alert('Please log in to create a request');
+                return;
+            }
+
+            // Prepare form data
+            const formData = new FormData(form);
+            const contactMethodsArray = Array.from(contactMethods).map(cb => cb.value);
+            
+            const requestData = {
+                title: formData.get('requestTitle'),
+                description: formData.get('requestDescription'),
+                category: formData.get('category'),
+                location: formData.get('district'),
+                urgency: formData.get('urgency'),
+                contactMethods: contactMethodsArray,
+                preferredDate: formData.get('preferredDate') || null,
+                preferredTime: formData.get('preferredTime') || null,
+                createdBy: currentUser.uid
+            };
+
+            try {
+                console.log('Submitting request with data:', requestData);
+                
+                // Show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = 'Creating Request...';
+                submitBtn.disabled = true;
+
+                // Create request with Firebase
+                const result = await createRequest(requestData, uploadedFiles);
+                console.log('Create request result:', result);
+                
+                if (result.success) {
+                    console.log('Request created successfully with ID:', result.id);
+                    // Show success modal
+                    successModal.classList.remove('hidden');
+                    
+                    // Clear draft from localStorage
+                    localStorage.removeItem('requestDraft');
+                    
+                    // Reset form after short delay
+                    setTimeout(() => {
+                        form.reset();
+                        uploadedFiles = [];
+                        previewGrid.innerHTML = '';
+                        imagePreview.classList.add('hidden');
+                        updateProgress();
+                    }, 500);
+                } else {
+                    console.error('Failed to create request:', result.error);
+                    alert('Failed to create request: ' + result.error);
+                }
+                
+                // Restore button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+            } catch (error) {
+                console.error('Error creating request:', error);
+                alert('Error creating request: ' + error.message);
+            }
+        });
+
+        createAnotherBtn.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+
+        // Save draft functionality
+        const saveDraftBtn = document.getElementById('saveDraftBtn');
+        saveDraftBtn.addEventListener('click', () => {
+            const formData = new FormData(form);
+            const draftData = {};
+
+            for (let [key, value] of formData.entries()) {
+                draftData[key] = value;
+            }
+
+            localStorage.setItem('requestDraft', JSON.stringify(draftData));
+
+            // Show temporary success message
+            const originalText = saveDraftBtn.innerHTML;
+            saveDraftBtn.innerHTML = `
+                <svg class="inline-block w-5 h-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                Draft Saved!
+            `;
+            saveDraftBtn.classList.add('bg-success', 'text-white');
+
+            setTimeout(() => {
+                saveDraftBtn.innerHTML = originalText;
+                saveDraftBtn.classList.remove('bg-success', 'text-white');
+            }, 2000);
+        });
+
+        // Load draft on page load and handle URL parameters
+        window.addEventListener('load', () => {
+            // Check for URL parameters (template or category)
+            const urlParams = new URLSearchParams(window.location.search);
+            const categoryParam = urlParams.get('category');
+            const isTemplate = urlParams.get('template');
+            
+            // Handle template parameters
+            if (isTemplate === 'true') {
+                const title = urlParams.get('title');
+                const description = urlParams.get('description');
+                const urgency = urlParams.get('urgency');
+                
+                if (title) document.getElementById('requestTitle').value = title;
+                if (description) document.getElementById('requestDescription').value = description;
+                if (urgency) {
+                    const urgencyRadio = document.querySelector(`input[name="urgency"][value="${urgency}"]`);
+                    if (urgencyRadio) urgencyRadio.checked = true;
+                }
+                
+                // Show template info
+                if (title) {
+                    document.getElementById('templateInfo').classList.remove('hidden');
+                    document.getElementById('templateName').textContent = title;
+                }
+            }
+            
+            if (categoryParam) {
+                const categorySelect = document.getElementById('category');
+                if (categorySelect) {
+                    categorySelect.value = categoryParam;
+                    updateProgress();
+                }
+            }
+            
+            // Load draft if exists (but don't override URL parameters)
+            const draft = localStorage.getItem('requestDraft');
+            if (draft && !categoryParam && !isTemplate) {
+                const draftData = JSON.parse(draft);
+                Object.keys(draftData).forEach(key => {
+                    const field = form.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        if (field.type === 'radio') {
+                            const radio = form.querySelector(`input[name="${key}"][value="${draftData[key]}"]`);
+                            if (radio) radio.checked = true;
+                        } else if (field.type === 'checkbox') {
+                            field.checked = true;
+                        } else {
+                            field.value = draftData[key];
+                        }
+                    }
+                });
+                updateProgress();
+            }
+            
+            // Update character counters and progress after loading data
+            const titleInput = document.getElementById('requestTitle');
+            const descInput = document.getElementById('requestDescription');
+            if (titleInput.value) {
+                document.getElementById('titleCount').textContent = titleInput.value.length + '/100';
+            }
+            if (descInput.value) {
+                document.getElementById('descCount').textContent = descInput.value.length + '/1000';
+            }
+            updateProgress();
+        });
+
+        // Close modal when clicking outside
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.add('hidden');
+            }
+        });
+    </script>
+
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>

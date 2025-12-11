@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Register for Community Help Platform - Join as a citizen or volunteer to connect with your community">
+    <title>Register - Community Help Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body class="bg-surface min-h-screen">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-border sticky top-0 z-50 shadow-subtle">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="../index.html" class="flex items-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Community Help Platform Logo">
+                        <circle cx="20" cy="20" r="18" fill="#3B82F6" opacity="0.1" />
+                        <path
+                            d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                            fill="#3B82F6" />
+                    </svg>
+                    <span class="text-xl font-semibold text-text-primary">Community Help</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="../index.html" class="text-text-secondary hover:text-primary transition-micro">Home</a>
+                    <a href="login.html" class="text-text-secondary hover:text-primary transition-micro">Login</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface transition-micro"
+                    aria-label="Toggle mobile menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="../index.html"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">Home</a>
+                    <a href="login.html" class="text-text-secondary hover:text-primary transition-micro py-2">Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="py-8 md:py-12">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto">
+                <!-- Registration Card -->
+                <div class="card-elevated">
+                    <!-- Header -->
+                    <div class="text-center mb-8">
+                        <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-3">
+                            Create Your Account
+                        </h1>
+                        <p class="text-text-secondary text-lg">
+                            Join our community and start making a difference today
+                        </p>
+                    </div>
+
+                    <!-- Registration Form -->
+                    <form id="registrationForm" class="space-y-6">
+                        <!-- Role Selection -->
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-4">
+                                Account Type <span class="text-error-500">*</span>
+                            </label>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="role" value="citizen" class="peer sr-only" required>
+                                    <div class="card-elevated border-2 border-border peer-checked:border-primary peer-checked:bg-primary-50 transition-standard hover:shadow-lg">
+                                        <div class="flex flex-col items-center text-center p-4">
+                                            <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mb-3">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                            </div>
+                                            <h3 class="text-base font-semibold text-text-primary mb-1">Citizen</h3>
+                                            <p class="text-xs text-text-secondary">Request help from volunteers</p>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="relative cursor-pointer">
+                                    <input type="radio" name="role" value="volunteer" class="peer sr-only" required>
+                                    <div class="card-elevated border-2 border-border peer-checked:border-primary peer-checked:bg-primary-50 transition-standard hover:shadow-lg">
+                                        <div class="flex flex-col items-center text-center p-4">
+                                            <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mb-3">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2">
+                                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                                </svg>
+                                            </div>
+                                            <h3 class="text-base font-semibold text-text-primary mb-1">Volunteer</h3>
+                                            <p class="text-xs text-text-secondary">Provide help to community</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <p id="roleError" class="text-error-500 text-sm mt-2 hidden">Please select an account type</p>
+                        </div>
+
+                        <!-- Volunteer Age Confirmation -->
+                        <div id="volunteerAgeConfirm" class="hidden">
+                            <div class="bg-accent-50 border border-accent-200 rounded-lg p-4">
+                                <label class="flex items-start gap-3 cursor-pointer">
+                                    <input type="checkbox" id="ageConfirmation" class="mt-1 w-5 h-5 text-primary border-border rounded focus:ring-2 focus:ring-primary-500">
+                                    <div class="flex-1">
+                                        <span class="text-sm font-medium text-text-primary">I confirm that I am 18 years or older</span>
+                                        <p class="text-xs text-text-secondary mt-1">Volunteers must be at least 18 years old</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <p id="ageError" class="text-error-500 text-sm mt-2 hidden">You must be 18 or older to volunteer</p>
+                        </div>
+                            <!-- Full Name -->
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-text-primary mb-2">
+                                    Full Name <span class="text-error-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B"
+                                            stroke-width="2">
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="fullName" name="fullName" class="input pl-10"
+                                        placeholder="John Doe" required>
+                                </div>
+                                <p id="fullNameError" class="text-error-500 text-sm mt-1 hidden">Please enter your full
+                                    name</p>
+                            </div>
+
+                            <!-- Email -->
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                                    Email Address <span class="text-error-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B"
+                                            stroke-width="2">
+                                            <path
+                                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                            </path>
+                                            <polyline points="22,6 12,13 2,6"></polyline>
+                                        </svg>
+                                    </div>
+                                    <input type="email" id="email" name="email" class="input pl-10"
+                                        placeholder="john.doe@example.com" required>
+                                </div>
+                                <p id="emailError" class="text-error-500 text-sm mt-1 hidden">Please enter a valid email
+                                    address</p>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-text-primary mb-2">
+                                    Phone Number <span class="text-error-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B"
+                                            stroke-width="2">
+                                            <path
+                                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <input type="tel" id="phone" name="phone" class="input pl-10"
+                                        placeholder="(555) 123-4567" required>
+                                </div>
+                                <p id="phoneError" class="text-error-500 text-sm mt-1 hidden">Please enter a valid phone
+                                    number</p>
+                            </div>
+
+                            <!-- Province Selection -->
+                            <div>
+                                <label for="province" class="block text-sm font-medium text-text-primary mb-2">
+                                    Province <span class="text-error-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B"
+                                            stroke-width="2">
+                                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                            <circle cx="12" cy="10" r="3"></circle>
+                                        </svg>
+                                    </div>
+                                    <select id="province" name="province"
+                                        class="input pl-10 appearance-none cursor-pointer" required>
+                                        <option value="">Select your province</option>
+                                        <option value="eastern">Eastern Province</option>
+                                        <option value="western">Western Province</option>
+                                        <option value="northern">Northern Province</option>
+                                        <option value="southern">Southern Province</option>
+                                        <option value="kigali">Kigali City</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B"
+                                            stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-text-secondary mt-1">
+                                    This helps us match you with nearby volunteers or requests
+                                </p>
+                                <p id="provinceError" class="text-error-500 text-sm mt-1 hidden">Please select your
+                                    province</p>
+                            </div>
+
+                            <!-- Password -->
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-text-primary mb-2">
+                                    Password <span class="text-error-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B"
+                                            stroke-width="2">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                    </div>
+                                    <input type="password" id="password" name="password" class="input pl-10 pr-10"
+                                        placeholder="Create a strong password" required minlength="8">
+                                    <button type="button" id="togglePassword"
+                                        class="absolute inset-y-0 right-0 pr-3 flex items-center"
+                                        aria-label="Toggle password visibility">
+                                        <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="#64748B" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                        <svg id="eyeOffIcon" class="hidden" width="20" height="20" viewBox="0 0 24 24"
+                                            fill="none" stroke="#64748B" stroke-width="2">
+                                            <path
+                                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
+                                            </path>
+                                            <line x1="1" y1="1" x2="23" y2="23"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <!-- Password Strength Indicator -->
+                                <div class="mt-2">
+                                    <div class="flex gap-1 mb-1">
+                                        <div id="strength1"
+                                            class="h-1 flex-1 bg-secondary-200 rounded transition-standard"></div>
+                                        <div id="strength2"
+                                            class="h-1 flex-1 bg-secondary-200 rounded transition-standard"></div>
+                                        <div id="strength3"
+                                            class="h-1 flex-1 bg-secondary-200 rounded transition-standard"></div>
+                                        <div id="strength4"
+                                            class="h-1 flex-1 bg-secondary-200 rounded transition-standard"></div>
+                                    </div>
+                                    <p id="strengthText" class="text-xs text-text-secondary">Password strength: <span
+                                            id="strengthLabel">Not set</span></p>
+                                </div>
+                                <p class="text-xs text-text-secondary mt-1">
+                                    Must be at least 8 characters with uppercase, lowercase, and numbers
+                                </p>
+                                <p id="passwordError" class="text-error-500 text-sm mt-1 hidden">Password must meet
+                                    requirements</p>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div>
+                                <label for="confirmPassword" class="block text-sm font-medium text-text-primary mb-2">
+                                    Confirm Password <span class="text-error-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748B"
+                                            stroke-width="2">
+                                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                    </div>
+                                    <input type="password" id="confirmPassword" name="confirmPassword"
+                                        class="input pl-10" placeholder="Re-enter your password" required>
+                                </div>
+                                <p id="confirmPasswordError" class="text-error-500 text-sm mt-1 hidden">Passwords do not
+                                    match</p>
+                            </div>
+
+                            <!-- Terms and Privacy -->
+                            <div class="space-y-3">
+                                <label class="flex items-start gap-3 cursor-pointer">
+                                    <input type="checkbox" id="termsAccept"
+                                        class="mt-1 w-5 h-5 text-primary border-border rounded focus:ring-2 focus:ring-primary-500"
+                                        required>
+                                    <span class="text-sm text-text-secondary">
+                                        I agree to the <a href="javascript:void(0)"
+                                            class="text-primary hover:underline">Terms of Service</a> and <a
+                                            href="javascript:void(0)" class="text-primary hover:underline">Privacy
+                                            Policy</a>
+                                    </span>
+                                </label>
+                                <p id="termsError" class="text-error-500 text-sm hidden">You must accept the terms to
+                                    continue</p>
+                            </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submitBtn" class="btn-primary w-full py-3 text-lg">
+                            <span id="submitText">Create Account</span>
+                            <span id="submitLoader" class="hidden">
+                                <svg class="animate-spin inline-block h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Creating account...
+                            </span>
+                        </button>
+                    </form>
+
+                    <!-- Divider -->
+                    <div class="relative my-8">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-border"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-4 bg-white text-text-secondary">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <!-- Google Sign-In -->
+                    <button type="button" id="googleSignIn"
+                        class="w-full btn-outline py-3 flex items-center justify-center gap-3">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                fill="#4285F4" />
+                            <path
+                                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                fill="#34A853" />
+                            <path
+                                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                fill="#FBBC05" />
+                            <path
+                                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                fill="#EA4335" />
+                        </svg>
+                        <span class="font-medium">Sign up with Google</span>
+                    </button>
+
+                    <!-- Login Link -->
+                    <div class="text-center mt-6">
+                        <p class="text-text-secondary">
+                            Already have an account?
+                            <a href="login.html" class="text-primary font-medium hover:underline">Sign in here</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Trust Signals -->
+                <div class="mt-8 grid grid-cols-3 gap-4 text-center">
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-10 h-10 bg-success-100 rounded-full flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981"
+                                stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs text-text-secondary">Secure</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6"
+                                stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <span class="text-xs text-text-secondary">Verified</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-10 h-10 bg-accent-100 rounded-full flex items-center justify-center">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9"
+                                stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xs text-text-secondary">Community</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-secondary-400">
+                    © 2025 Community Help Platform. All Rights Reserved.
+                </p>
+                <div class="flex gap-6 text-sm text-secondary-400">
+                    <a href="javascript:void(0)" class="hover:text-white transition-micro">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-white transition-micro">Terms of Service</a>
+                    <a href="javascript:void(0)" class="hover:text-white transition-micro">Help Center</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="module">
+        import { register, signInWithGoogle } from '../js/auth.js';
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Form elements
+        const registrationForm = document.getElementById('registrationForm');
+        const volunteerAgeConfirm = document.getElementById('volunteerAgeConfirm');
+        const roleInputs = document.querySelectorAll('input[name="role"]');
+
+        // Password toggle
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const eyeOffIcon = document.getElementById('eyeOffIcon');
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+            eyeIcon.classList.toggle('hidden');
+            eyeOffIcon.classList.toggle('hidden');
+        });
+
+        // Role selection - show/hide volunteer age confirmation
+        roleInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                if (e.target.value === 'volunteer') {
+                    volunteerAgeConfirm.classList.remove('hidden');
+                } else {
+                    volunteerAgeConfirm.classList.add('hidden');
+                }
+            });
+        });
+
+        // Password strength indicator
+        const password = document.getElementById('password');
+        const strength1 = document.getElementById('strength1');
+        const strength2 = document.getElementById('strength2');
+        const strength3 = document.getElementById('strength3');
+        const strength4 = document.getElementById('strength4');
+        const strengthLabel = document.getElementById('strengthLabel');
+
+        password.addEventListener('input', (e) => {
+            const value = e.target.value;
+            let strength = 0;
+
+            // Reset
+            [strength1, strength2, strength3, strength4].forEach(el => {
+                el.className = 'h-1 flex-1 bg-secondary-200 rounded transition-standard';
+            });
+
+            if (value.length >= 8) strength++;
+            if (/[a-z]/.test(value) && /[A-Z]/.test(value)) strength++;
+            if (/[0-9]/.test(value)) strength++;
+            if (/[^a-zA-Z0-9]/.test(value)) strength++;
+
+            const colors = ['bg-error-500', 'bg-warning-500', 'bg-accent-500', 'bg-success-500'];
+            const labels = ['Weak', 'Fair', 'Good', 'Strong'];
+
+            for (let i = 0; i < strength; i++) {
+                [strength1, strength2, strength3, strength4][i].className = `h-1 flex-1 ${colors[strength - 1]} rounded transition-standard`;
+            }
+
+            strengthLabel.textContent = strength > 0 ? labels[strength - 1] : 'Not set';
+        });
+
+        // Form validation and submission
+        registrationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Reset errors
+            document.querySelectorAll('[id$="Error"]').forEach(el => el.classList.add('hidden'));
+
+            let hasError = false;
+
+            // Validate role selection
+            const selectedRole = document.querySelector('input[name="role"]:checked');
+            if (!selectedRole) {
+                document.getElementById('roleError').classList.remove('hidden');
+                hasError = true;
+                return;
+            }
+
+            // Validate age confirmation for volunteers
+            if (selectedRole.value === 'volunteer' && !document.getElementById('ageConfirmation').checked) {
+                document.getElementById('ageError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            // Get form values
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const province = document.getElementById('province').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsAccept = document.getElementById('termsAccept').checked;
+            const selectedRoleValue = selectedRole.value;
+
+
+
+            // Validate full name
+            if (fullName.length < 2) {
+                document.getElementById('fullNameError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            // Validate phone
+            const phoneRegex = /^[\d\s\-\(\)]+$/;
+            if (!phoneRegex.test(phone) || phone.length < 10) {
+                document.getElementById('phoneError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            // Validate province
+            if (!province) {
+                document.getElementById('provinceError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            // Validate password
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('passwordError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            // Validate terms
+            if (!termsAccept) {
+                document.getElementById('termsError').classList.remove('hidden');
+                hasError = true;
+            }
+
+            if (hasError) {
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitLoader = document.getElementById('submitLoader');
+
+            submitBtn.disabled = true;
+            submitText.classList.add('hidden');
+            submitLoader.classList.remove('hidden');
+
+            // Register with Firebase
+            const userData = {
+                fullName,
+                phone,
+                province,
+                role: selectedRoleValue
+            };
+
+            const result = await register(email, password, userData);
+
+            if (result.success) {
+                alert('Registration successful! Please login with your credentials.');
+                window.location.href = 'login.html';
+            } else {
+                alert('Registration failed: ' + result.error);
+                submitBtn.disabled = false;
+                submitText.classList.remove('hidden');
+                submitLoader.classList.add('hidden');
+            }
+        });
+
+        // Google Sign-In
+        document.getElementById('googleSignIn').addEventListener('click', async () => {
+            const result = await signInWithGoogle();
+            if (result.success) {
+                window.location.href = 'citizen_dashboard.html';
+            } else {
+                alert('Google Sign-In failed: ' + result.error);
+            }
+        });
+    </script>
+
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Verification - Community Help Platform</title>
+    <link href="../css/main.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="text-center mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Volunteer Verification</h1>
+                <p class="text-gray-600 mt-2">Get verified to earn trust badges and access more opportunities</p>
+            </div>
+
+            <div id="verificationStatus" class="mb-6"></div>
+
+            <form id="verificationForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Legal Name</label>
+                    <input type="text" id="fullName" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">National ID Number</label>
+                    <input type="text" id="nationalId" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Skills & Specializations</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center"><input type="checkbox" value="plumbing" class="mr-2"> Plumbing</label>
+                        <label class="flex items-center"><input type="checkbox" value="electrical" class="mr-2"> Electrical</label>
+                        <label class="flex items-center"><input type="checkbox" value="tech" class="mr-2"> Tech Support</label>
+                        <label class="flex items-center"><input type="checkbox" value="transport" class="mr-2"> Transportation</label>
+                        <label class="flex items-center"><input type="checkbox" value="shopping" class="mr-2"> Shopping</label>
+                        <label class="flex items-center"><input type="checkbox" value="cleaning" class="mr-2"> Cleaning</label>
+                        <label class="flex items-center"><input type="checkbox" value="gardening" class="mr-2"> Gardening</label>
+                        <label class="flex items-center"><input type="checkbox" value="childcare" class="mr-2"> Childcare</label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Maximum Travel Distance (km)</label>
+                    <select id="travelDistance" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="5">Within 5 km</option>
+                        <option value="10">Within 10 km</option>
+                        <option value="20">Within 20 km</option>
+                        <option value="50">Within 50 km</option>
+                        <option value="unlimited">Anywhere in province</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Availability Schedule</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs text-gray-600">Weekdays</label>
+                            <select id="weekdayAvailability" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <option value="morning">Morning (6AM-12PM)</option>
+                                <option value="afternoon">Afternoon (12PM-6PM)</option>
+                                <option value="evening">Evening (6PM-10PM)</option>
+                                <option value="anytime">Anytime</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-600">Weekends</label>
+                            <select id="weekendAvailability" class="w-full px-3 py-2 border border-gray-300 rounded-md">
+                                <option value="morning">Morning (6AM-12PM)</option>
+                                <option value="afternoon">Afternoon (12PM-6PM)</option>
+                                <option value="evening">Evening (6PM-10PM)</option>
+                                <option value="anytime">Anytime</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Emergency Response</label>
+                    <label class="flex items-center">
+                        <input type="checkbox" id="emergencyResponse" class="mr-2">
+                        I'm available for emergency assistance (high priority requests)
+                    </label>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Additional Information</label>
+                    <textarea id="additionalInfo" rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Any additional qualifications, experience, or information..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200">
+                    Submit Verification Request
+                </button>
+            </form>
+
+            <div class="mt-6 text-center">
+                <a href="volunteer_dashboard.html" class="text-blue-600 hover:text-blue-800">Back to Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { verificationService, volunteerService } from '../js/enhanced-features.js';
+        import { auth } from '../js/firebase-config.js';
+        import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+        let currentUser = null;
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            currentUser = user;
+            await checkVerificationStatus();
+        });
+
+        async function checkVerificationStatus() {
+            try {
+                const status = await verificationService.getVerificationStatus(currentUser.uid);
+                const statusDiv = document.getElementById('verificationStatus');
+                
+                if (status) {
+                    if (status.status === 'approved') {
+                        statusDiv.innerHTML = `
+                            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded">
+                                <strong>✓ Verified Volunteer</strong> - You are verified and can access all features!
+                            </div>
+                        `;
+                        document.getElementById('verificationForm').style.display = 'none';
+                    } else if (status.status === 'pending') {
+                        statusDiv.innerHTML = `
+                            <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+                                <strong>⏳ Verification Pending</strong> - Your verification is being reviewed.
+                            </div>
+                        `;
+                        document.getElementById('verificationForm').style.display = 'none';
+                    } else if (status.status === 'rejected') {
+                        statusDiv.innerHTML = `
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                                <strong>✗ Verification Rejected</strong> - Please contact support or resubmit with correct information.
+                            </div>
+                        `;
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking verification status:', error);
+            }
+        }
+
+        document.getElementById('verificationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const skills = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+                .map(cb => cb.value)
+                .filter(v => v !== 'emergencyResponse');
+            
+            const verificationData = {
+                fullName: document.getElementById('fullName').value,
+                nationalId: document.getElementById('nationalId').value,
+                skills: skills,
+                travelDistance: document.getElementById('travelDistance').value,
+                weekdayAvailability: document.getElementById('weekdayAvailability').value,
+                weekendAvailability: document.getElementById('weekendAvailability').value,
+                emergencyResponse: document.getElementById('emergencyResponse').checked,
+                additionalInfo: document.getElementById('additionalInfo').value
+            };
+
+            try {
+                await verificationService.submitVerification(verificationData);
+                
+                // Also update user profile with skills and availability
+                await volunteerService.updateVolunteerProfile({
+                    skills: skills,
+                    travelDistance: verificationData.travelDistance,
+                    availability: {
+                        weekdays: verificationData.weekdayAvailability,
+                        weekends: verificationData.weekendAvailability
+                    },
+                    emergencyResponse: verificationData.emergencyResponse,
+                    verificationSubmitted: true
+                });
+
+                alert('Verification request submitted successfully!');
+                window.location.reload();
+            } catch (error) {
+                console.error('Error submitting verification:', error);
+                alert('Error submitting verification. Please try again.');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

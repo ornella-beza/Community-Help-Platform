@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Community Help Platform - Connect with verified volunteers in your community for real-time assistance">
+    <title>Community Help Platform - Connect, Help, Thrive</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <script type="module" async
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fcommunity5329back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10"></script>
+    <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-border sticky top-0 z-50 shadow-subtle">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Community Help Platform Logo">
+                        <circle cx="20" cy="20" r="18" fill="#3B82F6" opacity="0.1" />
+                        <path
+                            d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                            fill="#3B82F6" />
+                    </svg>
+                    <span class="text-xl font-semibold text-text-primary">Community Help</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="login.html" class="text-text-secondary hover:text-primary transition-micro">Login</a>
+                    <a href="register.html" class="btn-primary">Get Started</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface transition-micro"
+                    aria-label="Toggle mobile menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="login.html" class="text-text-secondary hover:text-primary transition-micro py-2">Login</a>
+                    <a href="register.html" class="btn-primary text-center">Get Started</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0L10.472 5.528L16 8L10.472 10.472L8 16L5.528 10.472L0 8L5.528 5.528L8 0Z" />
+                        </svg>
+                        <span>Trusted by 10,000+ community members</span>
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl font-bold text-text-primary leading-tight">
+                        Connect, Help, <span class="text-primary">Thrive Together</span>
+                    </h1>
+
+                    <p class="text-lg text-text-secondary leading-relaxed">
+                        Join a community where neighbors help neighbors. Get assistance when you need it, or become a
+                        verified volunteer to make a difference in your local area.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="register.html" class="btn-primary text-center text-lg px-8 py-3">
+                            Get Started Free
+                            <svg class="inline-block ml-2" width="20" height="20" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="login.html" class="btn-outline text-center text-lg px-8 py-3">
+                            Sign In
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-border">
+                        <div>
+                            <div class="text-2xl font-bold text-primary">10K+</div>
+                            <div class="text-sm text-text-secondary">Active Users</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-primary">5K+</div>
+                            <div class="text-sm text-text-secondary">Volunteers</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-primary">98%</div>
+                            <div class="text-sm text-text-secondary">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-elevated">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_13d41cd30-1764668129402.png"
+                            alt="Community volunteers helping elderly person with groceries, showing real-time assistance in action"
+                            class="w-full h-auto object-cover" loading="lazy"
+                            onerror="this.src='https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'; this.onerror=null;" />
+                        <!-- Floating Card -->
+                        <div
+                            class="absolute bottom-6 left-6 right-6 bg-white rounded-xl shadow-lg p-4 backdrop-blur-sm bg-opacity-95">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-success-100 rounded-full flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981"
+                                        stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-text-primary">Request Completed</div>
+                                    <div class="text-sm text-text-secondary">Just now in your district</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Background Decoration -->
+        <div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#3B82F6"
+                    d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.2,73.1,42.3C64.8,55.4,53.8,67,40.6,74.3C27.4,81.6,12,84.6,-3.5,90.7C-19,96.8,-38,106,-52.8,101.3C-67.6,96.6,-78.2,78,-83.8,59.4C-89.4,40.8,-90,22.2,-87.8,5.2C-85.6,-11.8,-80.6,-27.2,-72.8,-40.3C-65,-53.4,-54.4,-64.2,-41.5,-72.2C-28.6,-80.2,-14.3,-85.4,0.5,-86.3C15.3,-87.2,30.6,-83.6,44.7,-76.4Z"
+                    transform="translate(100 100)" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                    Why Choose Community Help?
+                </h2>
+                <p class="text-lg text-text-secondary">
+                    Our platform connects you with verified volunteers in real-time, ensuring safe and reliable
+                    community assistance whenever you need it.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1: Verified Volunteers -->
+                <div class="card-elevated group hover:shadow-lg transition-standard">
+                    <div
+                        class="w-16 h-16 bg-primary-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-standard">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 4L18.472 9.528L24 12L18.472 14.472L16 20L13.528 14.472L8 12L13.528 9.528L16 4Z"
+                                fill="#3B82F6" />
+                            <circle cx="16" cy="22" r="6" stroke="#3B82F6" stroke-width="2" fill="none" />
+                            <path d="M14 22L15.5 23.5L18 21" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-3">Verified Volunteers</h3>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        All volunteers undergo thorough verification to ensure your safety and peace of mind. Trust is
+                        our foundation.
+                    </p>
+                    <div class="flex items-center gap-2 text-primary font-medium">
+                        <span>Learn more</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8.293 2.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 9H3a1 1 0 110-2h8.586L8.293 3.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Real-Time Matching -->
+                <div class="card-elevated group hover:shadow-lg transition-standard">
+                    <div
+                        class="w-16 h-16 bg-accent-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-standard">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="12" stroke="#0EA5E9" stroke-width="2" fill="none" />
+                            <path d="M16 8V16L21 19" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <circle cx="24" cy="8" r="4" fill="#0EA5E9" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-3">Real-Time Matching</h3>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        Get instant notifications when volunteers accept your request. Track progress in real-time from
+                        start to completion.
+                    </p>
+                    <div class="flex items-center gap-2 text-accent font-medium">
+                        <span>Learn more</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8.293 2.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 9H3a1 1 0 110-2h8.586L8.293 3.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Secure Messaging -->
+                <div class="card-elevated group hover:shadow-lg transition-standard">
+                    <div
+                        class="w-16 h-16 bg-success-100 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-standard">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="8" width="24" height="16" rx="2" stroke="#10B981" stroke-width="2"
+                                fill="none" />
+                            <path d="M4 10L16 18L28 10" stroke="#10B981" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <circle cx="24" cy="12" r="3" fill="#10B981" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-text-primary mb-3">Secure Messaging</h3>
+                    <p class="text-text-secondary leading-relaxed mb-4">
+                        Communicate safely with volunteers through our encrypted messaging system. Your privacy is
+                        protected.
+                    </p>
+                    <div class="flex items-center gap-2 text-success font-medium">
+                        <span>Learn more</span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M8.293 2.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414-1.414L11.586 9H3a1 1 0 110-2h8.586L8.293 3.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Signals Section -->
+    <section class="py-16 md:py-24 bg-surface">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+                    Trusted by Communities Nationwide
+                </h2>
+                <p class="text-lg text-text-secondary">
+                    Join thousands of satisfied users who have found reliable help and made meaningful connections.
+                </p>
+            </div>
+
+            <!-- Trust Signals Grid -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <!-- SSL Security -->
+                <div class="bg-white rounded-xl p-6 text-center shadow-subtle">
+                    <div class="w-16 h-16 bg-success-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 4L6 9V15C6 21.075 10.05 26.55 16 28C21.95 26.55 26 21.075 26 15V9L16 4Z"
+                                stroke="#10B981" stroke-width="2" fill="none" />
+                            <path d="M12 16L14.5 18.5L20 13" stroke="#10B981" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">SSL Secured</h3>
+                    <p class="text-text-secondary text-sm">Bank-level encryption protects your data</p>
+                </div>
+
+                <!-- User Verification -->
+                <div class="bg-white rounded-xl p-6 text-center shadow-subtle">
+                    <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="12" r="5" stroke="#3B82F6" stroke-width="2" fill="none" />
+                            <path d="M8 26C8 22.686 11.582 20 16 20C20.418 20 24 22.686 24 26" stroke="#3B82F6"
+                                stroke-width="2" stroke-linecap="round" />
+                            <circle cx="22" cy="10" r="4" fill="#3B82F6" />
+                            <path d="M20 10L21 11L23 9" stroke="white" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">Verified Users</h3>
+                    <p class="text-text-secondary text-sm">All volunteers undergo background checks</p>
+                </div>
+
+                <!-- 24/7 Support -->
+                <div class="bg-white rounded-xl p-6 text-center shadow-subtle">
+                    <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="16" cy="16" r="12" stroke="#0EA5E9" stroke-width="2" fill="none" />
+                            <path d="M16 8V16L21 19" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-text-primary mb-2">24/7 Support</h3>
+                    <p class="text-text-secondary text-sm">Round-the-clock assistance when you need it</p>
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-subtle">
+                    <div class="flex items-start gap-4 mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c2cebaf3-1765212220499.png"
+                            alt="Portrait of Sarah Johnson, satisfied community help platform user"
+                            class="w-12 h-12 rounded-full object-cover" loading="lazy"
+                            onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'; this.onerror=null;" />
+                        <div>
+                            <div class="font-semibold text-text-primary">Sarah Johnson</div>
+                            <div class="text-sm text-text-secondary">Citizen Member</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    </div>
+                    <p class="text-text-secondary leading-relaxed">
+                        "I needed help with groceries during recovery from surgery. Within 30 minutes, a verified
+                        volunteer accepted my request. The platform made me feel safe and connected to my community."
+                    </p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-subtle">
+                    <div class="flex items-start gap-4 mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17a7d695c-1763295891214.png"
+                            alt="Portrait of Michael Chen, active volunteer on community help platform"
+                            class="w-12 h-12 rounded-full object-cover" loading="lazy"
+                            onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'; this.onerror=null;" />
+                        <div>
+                            <div class="font-semibold text-text-primary">Michael Chen</div>
+                            <div class="text-sm text-text-secondary">Verified Volunteer</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-1 mb-3">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="#F59E0B">
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    </div>
+                    <p class="text-text-secondary leading-relaxed">
+                        "Being a volunteer has been incredibly rewarding. The platform makes it easy to find
+                        opportunities in my area, and the real-time updates keep me informed throughout each task."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    Ready to Make a Difference?
+                </h2>
+                <p class="text-xl mb-8 opacity-90">
+                    Join our community today and experience the power of neighbors helping neighbors.
+                </p>
+
+                <!-- Role Selection Preview -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Citizen Card -->
+                    <div
+                        class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border-2 border-white border-opacity-20 hover:border-opacity-40 transition-standard">
+                        <div
+                            class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">I Need Help</h3>
+                        <p class="text-sm opacity-90 mb-4">Create requests and get assistance from verified volunteers
+                            in your community</p>
+                        <a href="register.html?role=citizen"
+                            class="inline-block bg-white text-primary px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-micro">
+                            Sign Up as Citizen
+                        </a>
+                    </div>
+
+                    <!-- Volunteer Card -->
+                    <div
+                        class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border-2 border-white border-opacity-20 hover:border-opacity-40 transition-standard">
+                        <div
+                            class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">I Want to Help</h3>
+                        <p class="text-sm opacity-90 mb-4">Become a verified volunteer and make a positive impact in
+                            your local area</p>
+                        <a href="register.html?role=volunteer"
+                            class="inline-block bg-white text-primary px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-micro">
+                            Sign Up as Volunteer
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Login Link -->
+                <p class="text-sm opacity-90">
+                    Already have an account?
+                    <a href="login.html" class="font-semibold underline hover:no-underline">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            aria-label="Community Help Platform Logo">
+                            <circle cx="20" cy="20" r="18" fill="white" opacity="0.1" />
+                            <path
+                                d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                                fill="white" />
+                        </svg>
+                        <span class="text-lg font-semibold">Community Help</span>
+                    </div>
+                    <p class="text-sm text-secondary-400">
+                        Connecting communities through verified assistance and real-time support.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-secondary-400">
+                        <li><a href="register.html" class="hover:text-white transition-micro">Get Started</a></li>
+                        <li><a href="login.html" class="hover:text-white transition-micro">Login</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">How It Works</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Safety Guidelines</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm text-secondary-400">
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Help Center</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Contact Us</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">FAQs</a></li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Report Issue</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-secondary-400">
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Privacy Policy</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Terms of Service</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Cookie Policy</a>
+                        </li>
+                        <li><a href="javascript:void(0)" class="hover:text-white transition-micro">Community
+                                Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div
+                class="border-t border-secondary-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-secondary-400">
+                    © 2025 Community Help Platform. All Rights Reserved.
+                </p>
+                <div class="flex gap-4">
+                    <a href="javascript:void(0)"
+                        class="w-10 h-10 bg-secondary-800 rounded-full flex items-center justify-center hover:bg-primary transition-micro"
+                        aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)"
+                        class="w-10 h-10 bg-secondary-800 rounded-full flex items-center justify-center hover:bg-primary transition-micro"
+                        aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                        </svg>
+                    </a>
+                    <a href="javascript:void(0)"
+                        class="w-10 h-10 bg-secondary-800 rounded-full flex items-center justify-center hover:bg-primary transition-micro"
+                        aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+    <script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>

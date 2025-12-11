@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Community Help Platform - Connect with verified volunteers in your community for real-time assistance">
+    <title>Community Help Platform - Connect, Help, Thrive</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body class="bg-background">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-border sticky top-0 z-50 shadow-subtle">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Community Help Platform Logo">
+                        <circle cx="20" cy="20" r="18" fill="#3B82F6" opacity="0.1" />
+                        <path
+                            d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                            fill="#3B82F6" />
+                    </svg>
+                    <span class="text-xl font-semibold text-text-primary">Community Help</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="pages/login.html" class="text-text-secondary hover:text-primary transition-micro">Login</a>
+                    <a href="pages/register.html" class="btn-primary">Get Started</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface transition-micro"
+                    aria-label="Toggle mobile menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="pages/login.html" class="text-text-secondary hover:text-primary transition-micro py-2">Login</a>
+                    <a href="pages/register.html" class="btn-primary text-center">Get Started</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-primary-50 via-white to-accent-50">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0L10.472 5.528L16 8L10.472 10.472L8 16L5.528 10.472L0 8L5.528 5.528L8 0Z" />
+                        </svg>
+                        <span>Trusted by 10,000+ community members</span>
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl font-bold text-text-primary leading-tight">
+                        Connect, Help, <span class="text-primary">Thrive Together</span>
+                    </h1>
+
+                    <p class="text-lg text-text-secondary leading-relaxed">
+                        Join a community where neighbors help neighbors. Get assistance when you need it, or become a
+                        verified volunteer to make a difference in your local area.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="pages/register.html" class="btn-primary text-center text-lg px-8 py-3">
+                            Get Started Free
+                            <svg class="inline-block ml-2" width="20" height="20" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <a href="pages/login.html" class="btn-outline text-center text-lg px-8 py-3">
+                            Sign In
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-border">
+                        <div>
+                            <div class="text-2xl font-bold text-primary">10K+</div>
+                            <div class="text-sm text-text-secondary">Active Users</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-primary">5K+</div>
+                            <div class="text-sm text-text-secondary">Volunteers</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-primary">98%</div>
+                            <div class="text-sm text-text-secondary">Success Rate</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-elevated">
+                        <div class="w-full h-96 bg-gradient-to-br from-primary-100 to-accent-100 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-6xl mb-4">🤝</div>
+                                <h3 class="text-xl font-semibold text-text-primary">Community Help</h3>
+                                <p class="text-text-secondary">Connecting neighbors</p>
+                            </div>
+                        </div>
+                        <!-- Floating Card -->
+                        <div
+                            class="absolute bottom-6 left-6 right-6 bg-white rounded-xl shadow-lg p-4 backdrop-blur-sm bg-opacity-95">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 bg-success-100 rounded-full flex items-center justify-center">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981"
+                                        stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-text-primary">Request Completed</div>
+                                    <div class="text-sm text-text-secondary">Just now in your district</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-primary-600 to-accent-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                    Ready to Make a Difference?
+                </h2>
+                <p class="text-xl mb-8 opacity-90">
+                    Join our community today and experience the power of neighbors helping neighbors.
+                </p>
+
+                <!-- Role Selection Preview -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Citizen Card -->
+                    <div
+                        class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border-2 border-white border-opacity-20 hover:border-opacity-40 transition-standard">
+                        <div
+                            class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">I Need Help</h3>
+                        <p class="text-sm opacity-90 mb-4">Create requests and get assistance from verified volunteers
+                            in your community</p>
+                        <a href="pages/register.html?role=citizen"
+                            class="inline-block bg-white text-primary px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-micro">
+                            Sign Up as Citizen
+                        </a>
+                    </div>
+
+                    <!-- Volunteer Card -->
+                    <div
+                        class="bg-white bg-opacity-10 backdrop-blur-sm rounded-xl p-6 border-2 border-white border-opacity-20 hover:border-opacity-40 transition-standard">
+                        <div
+                            class="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-2">I Want to Help</h3>
+                        <p class="text-sm opacity-90 mb-4">Become a verified volunteer and make a positive impact in
+                            your local area</p>
+                        <a href="pages/register.html?role=volunteer"
+                            class="inline-block bg-white text-primary px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-micro">
+                            Sign Up as Volunteer
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Login Link -->
+                <p class="text-sm opacity-90">
+                    Already have an account?
+                    <a href="pages/login.html" class="font-semibold underline hover:no-underline">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" fill="white" opacity="0.1" />
+                        <path
+                            d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                            fill="white" />
+                    </svg>
+                    <span class="text-lg font-semibold">Community Help</span>
+                </div>
+                <p class="text-sm text-secondary-400 mb-6">
+                    © 2025 Community Help Platform. All Rights Reserved.
+                </p>
+                <div class="flex justify-center gap-6 text-sm text-secondary-400">
+                    <a href="javascript:void(0)" class="hover:text-white transition-micro">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="hover:text-white transition-micro">Terms of Service</a>
+                    <a href="javascript:void(0)" class="hover:text-white transition-micro">Help Center</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="/public/dhws-data-injector.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Community Help Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="bg-surface">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-border sticky top-0 z-50 shadow-subtle">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <a href="javascript:history.back()" class="p-2 rounded-lg hover:bg-surface transition-micro">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                    </a>
+                    <div>
+                        <h1 class="text-lg font-semibold text-text-primary" id="chatTitle">Chat</h1>
+                        <p class="text-sm text-text-secondary" id="chatSubtitle">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Chat Container -->
+    <div class="container mx-auto px-4 py-4 max-w-4xl">
+        <div class="bg-white rounded-lg shadow-subtle h-[calc(100vh-200px)] flex flex-col">
+            <!-- Messages Area -->
+            <div id="messagesContainer" class="flex-1 p-4 overflow-y-auto space-y-4">
+                <!-- Messages will be loaded here -->
+            </div>
+
+            <!-- Message Input -->
+            <div class="border-t border-border p-4">
+                <form id="messageForm" class="flex gap-3">
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        class="input flex-1" 
+                        placeholder="Type your message..." 
+                        required
+                    />
+                    <button type="submit" class="btn-primary px-6">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { requireAuth } from '../js/auth-guard.js';
+        import { sendMessage, listenToMessages } from '../js/messaging.js';
+        import { getCurrentUserData } from '../js/auth.js';
+
+        // Protect this page
+        requireAuth().catch(() => {
+            // Redirect handled by requireAuth
+        });
+
+        let currentUser = null;
+        let requestId = null;
+        let messagesUnsubscribe = null;
+
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        requestId = urlParams.get('requestId');
+
+        if (!requestId) {
+            alert('No request ID provided');
+            history.back();
+        }
+
+        // Initialize chat
+        async function initChat() {
+            try {
+                currentUser = await getCurrentUserData();
+                if (currentUser) {
+                    loadMessages();
+                    updateChatTitle();
+                } else {
+                    console.log('No user data found');
+                    history.back();
+                }
+            } catch (error) {
+                console.error('Error initializing chat:', error);
+                history.back();
+            }
+        }
+        
+        // Update chat title
+        function updateChatTitle() {
+            document.getElementById('chatTitle').textContent = 'Chat';
+            document.getElementById('chatSubtitle').textContent = 'Real-time messaging';
+        }
+        
+        // Initialize
+        initChat();
+
+        // Load messages
+        function loadMessages() {
+            if (!requestId || !currentUser) return;
+
+            messagesUnsubscribe = listenToMessages(requestId, (messages) => {
+                displayMessages(messages);
+            });
+        }
+
+        // Display messages
+        function displayMessages(messages) {
+            const container = document.getElementById('messagesContainer');
+            container.innerHTML = '';
+
+            messages.forEach(message => {
+                const messageEl = document.createElement('div');
+                const isOwnMessage = message.senderId === currentUser.uid;
+                
+                messageEl.className = `flex ${isOwnMessage ? 'justify-end' : 'justify-start'}`;
+                messageEl.innerHTML = `
+                    <div class="max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                        isOwnMessage 
+                            ? 'bg-primary text-white' 
+                            : 'bg-secondary-100 text-text-primary'
+                    }">
+                        <p class="text-sm">${message.text}</p>
+                        <p class="text-xs mt-1 opacity-70">
+                            ${message.timestamp ? new Date(message.timestamp.toDate()).toLocaleTimeString() : 'Sending...'}
+                        </p>
+                    </div>
+                `;
+                container.appendChild(messageEl);
+            });
+
+            // Scroll to bottom
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Send message
+        document.getElementById('messageForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const messageInput = document.getElementById('messageInput');
+            const text = messageInput.value.trim();
+            
+            if (!text || !currentUser || !requestId) return;
+
+            try {
+                await sendMessage(requestId, currentUser.uid, text);
+                messageInput.value = '';
+            } catch (error) {
+                alert('Failed to send message: ' + error.message);
+            }
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (messagesUnsubscribe) {
+                messagesUnsubscribe();
+            }
+        });
+    </script>
+
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

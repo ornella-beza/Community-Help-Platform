@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Volunteer Dashboard - Discover and manage community assistance opportunities in your district">
+    <title>Volunteer Dashboard - Community Help Platform</title>
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+
+<body class="bg-surface">
+    <!-- Navigation Header -->
+    <header class="bg-white border-b border-border sticky top-0 z-50 shadow-subtle">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Community Help Platform Logo">
+                        <circle cx="20" cy="20" r="18" fill="#3B82F6" opacity="0.1" />
+                        <path
+                            d="M20 8C13.373 8 8 13.373 8 20C8 26.627 13.373 32 20 32C26.627 32 32 26.627 32 20C32 13.373 26.627 8 20 8ZM20 14C21.657 14 23 15.343 23 17C23 18.657 21.657 20 20 20C18.343 20 17 18.657 17 17C17 15.343 18.343 14 20 14ZM20 29C17.333 29 14.982 27.667 13.5 25.667C13.533 23.622 17.5 22.5 20 22.5C22.5 22.5 26.467 23.622 26.5 25.667C25.018 27.667 22.667 29 20 29Z"
+                            fill="#3B82F6" />
+                    </svg>
+                    <span class="text-xl font-semibold text-text-primary">Community Help</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="volunteer_dashboard.html"
+                        class="text-primary font-medium border-b-2 border-primary pb-1">Dashboard</a>
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-micro">My
+                        Tasks</a>
+
+
+                    <div id="profileAvatar" class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm">
+                        U
+                    </div>
+                    <button id="logoutBtn" class="btn-outline text-error hover:bg-error-50">
+                        <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-surface transition-micro"
+                    aria-label="Toggle mobile menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden mt-4 pb-4 border-t border-border pt-4">
+                <div class="flex flex-col gap-3">
+                    <a href="volunteer_dashboard.html" class="text-primary font-medium py-2">Dashboard</a>
+                    <a href="javascript:void(0)" class="text-text-secondary hover:text-primary transition-micro py-2">My
+                        Tasks</a>
+
+                    <a href="javascript:void(0)"
+                        class="text-text-secondary hover:text-primary transition-micro py-2">Profile Settings</a>
+                    <a href="login.html" class="text-error hover:text-error-600 transition-micro py-2">Sign Out</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Welcome Section -->
+        <div class="mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="relative">
+                        <div id="profileAvatarLarge" class="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold">
+                            U
+                        </div>
+                        <div id="verificationBadge" class="hidden absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 id="welcomeMessage" class="text-3xl font-bold text-text-primary">Welcome back! 👋</h1>
+                            <span id="verificationStatus" class="hidden px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Verified</span>
+                        </div>
+                        <p class="text-text-secondary">Ready to make a difference in your community today?</p>
+                        <div id="skillsDisplay" class="hidden mt-2 flex flex-wrap gap-1"></div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="volunteer_verification.html" id="verifyBtn" class="hidden bg-yellow-600 text-white px-3 py-1 rounded-md hover:bg-yellow-700 transition duration-200 text-sm">
+                        Get Verified
+                    </a>
+                    <a href="community_board.html" class="text-blue-600 hover:text-blue-800 text-sm">
+                        Community Board
+                    </a>
+                    <button id="availabilityBtn" class="btn-outline flex items-center gap-2">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span id="availabilityText">Available</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <!-- Completed Tasks -->
+            <div class="card-elevated">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-12 h-12 bg-success-100 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <span id="completedTasksChange" class="text-xs text-success-600 bg-success-50 px-2 py-1 rounded-full">--</span>
+                </div>
+                <div id="completedTasksCount" class="text-2xl font-bold text-text-primary mb-1">0</div>
+                <div class="text-sm text-text-secondary">Completed Tasks</div>
+            </div>
+
+            <!-- Community Rating -->
+            <div class="card-elevated">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-12 h-12 bg-warning-100 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="#F59E0B">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                    </div>
+                    <span id="ratingBadge" class="text-xs text-warning-600 bg-warning-50 px-2 py-1 rounded-full">--</span>
+                </div>
+                <div id="communityRating" class="text-2xl font-bold text-text-primary mb-1">0</div>
+                <div class="text-sm text-text-secondary">Community Rating</div>
+            </div>
+
+            <!-- Active Tasks -->
+            <div class="card-elevated">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </div>
+                    <span class="text-xs text-primary-600 bg-primary-50 px-2 py-1 rounded-full pulse-active">Live</span>
+                </div>
+                <div id="activeTasksStatCount" class="text-2xl font-bold text-text-primary mb-1">0</div>
+                <div class="text-sm text-text-secondary">Active Tasks</div>
+            </div>
+
+            <!-- Earned Badges -->
+            <div class="card-elevated">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="w-12 h-12 bg-accent-100 rounded-xl flex items-center justify-center">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" stroke-width="2">
+                            <path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span id="badgesNew" class="text-xs text-accent-600 bg-accent-50 px-2 py-1 rounded-full">--</span>
+                </div>
+                <div id="earnedBadgesCount" class="text-2xl font-bold text-text-primary mb-1">0</div>
+                <div class="text-sm text-text-secondary">Earned Badges</div>
+            </div>
+        </div>
+
+        <!-- Main Content Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Available Requests Section -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Filter Panel -->
+                <div class="card-elevated">
+                    <div class="flex flex-col md:flex-row md:items-center gap-4">
+                        <div class="flex-1">
+                            <div class="relative">
+                                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-secondary"
+                                    width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                <input type="text" placeholder="Search requests..." class="input pl-10"
+                                    id="searchInput" />
+                            </div>
+                        </div>
+
+                        <button id="filterBtn" class="btn-outline flex items-center gap-2 whitespace-nowrap">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Filters</span>
+                            <span id="filterCount" class="bg-primary text-white text-xs px-2 py-0.5 rounded-full">0</span>
+                        </button>
+
+                        <select id="sortSelect" class="btn-outline flex items-center gap-2 whitespace-nowrap">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="urgency">By Urgency</option>
+                            <option value="category">By Category</option>
+                        </select>
+                    </div>
+
+                    <!-- Active Filters -->
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm">
+                            <span>Within 5 miles</span>
+                            <button class="hover:text-primary-900" aria-label="Remove distance filter">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M11.707 2.293a1 1 0 010 1.414L8.414 7l3.293 3.293a1 1 0 01-1.414 1.414L7 8.414l-3.293 3.293a1 1 0 01-1.414-1.414L5.586 7 2.293 3.707a1 1 0 011.414-1.414L7 5.586l3.293-3.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </span>
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm">
+                            <span>Emergency</span>
+                            <button class="hover:text-primary-900" aria-label="Remove emergency filter">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M11.707 2.293a1 1 0 010 1.414L8.414 7l3.293 3.293a1 1 0 01-1.414 1.414L7 8.414l-3.293 3.293a1 1 0 01-1.414-1.414L5.586 7 2.293 3.707a1 1 0 011.414-1.414L7 5.586l3.293-3.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </span>
+                        <span
+                            class="inline-flex items-center gap-2 px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm">
+                            <span>Available Now</span>
+                            <button class="hover:text-primary-900" aria-label="Remove availability filter">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M11.707 2.293a1 1 0 010 1.414L8.414 7l3.293 3.293a1 1 0 01-1.414 1.414L7 8.414l-3.293 3.293a1 1 0 01-1.414-1.414L5.586 7 2.293 3.707a1 1 0 011.414-1.414L7 5.586l3.293-3.293a1 1 0 011.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </span>
+                        <button class="text-sm text-text-secondary hover:text-primary transition-micro">Clear
+                            all</button>
+                    </div>
+                </div>
+
+                <!-- Available Requests Header -->
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-semibold text-text-primary">Available Requests</h2>
+                    <span class="text-sm text-text-secondary">0 requests in your area</span>
+                </div>
+
+                <!-- Request Cards -->
+                <div class="space-y-4">
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">No requests available</h3>
+                        <p class="text-text-secondary">Check back later for new community assistance requests</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <!-- Active Tasks -->
+                <div class="card-elevated">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-lg font-semibold text-text-primary">Active Tasks</h3>
+                        <span id="activeTasksCount" class="status-info text-xs pulse-active">0 Active</span>
+                    </div>
+
+                    <div id="activeTasksList" class="space-y-3">
+                        <div class="text-center py-8">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                    <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                    <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-text-primary text-sm mb-1">No active tasks</h4>
+                            <p class="text-xs text-text-secondary">Accept requests to see your active tasks here</p>
+                        </div>
+                    </div>
+
+                    <a href="javascript:void(0)"
+                        class="block text-center text-sm text-primary hover:text-primary-600 font-medium mt-4">
+                        View All Tasks →
+                    </a>
+                </div>
+
+                <!-- Impact Metrics -->
+                <div class="card-elevated">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Your Impact</h3>
+
+                    <div id="impactMetrics" class="space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between text-sm mb-2">
+                                <span class="text-text-secondary">Hours Contributed</span>
+                                <span class="font-semibold text-text-primary">0 hrs</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2">
+                                <div class="bg-success h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between text-sm mb-2">
+                                <span class="text-text-secondary">People Helped</span>
+                                <span class="font-semibold text-text-primary">0</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between text-sm mb-2">
+                                <span class="text-text-secondary">Response Time</span>
+                                <span class="font-semibold text-text-primary">-- mins</span>
+                            </div>
+                            <div class="w-full bg-secondary-200 rounded-full h-2">
+                                <div class="bg-accent h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- My Ratings -->
+                <div class="card-elevated">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">My Ratings</h3>
+                    <div id="myRatingsList" class="space-y-3">
+                        <div class="text-center py-8">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="#F59E0B">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                </svg>
+                            </div>
+                            <h4 class="font-medium text-text-primary text-sm mb-1">Loading ratings...</h4>
+                            <p class="text-xs text-text-secondary">Your task ratings will appear here</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Earned Badges -->
+                <div class="card-elevated">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Earned Badges</h3>
+
+                    <div id="earnedBadges" class="grid grid-cols-4 gap-3">
+                        <div class="text-center opacity-50">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-xl">🔒</span>
+                            </div>
+                            <span class="text-xs text-text-secondary">First Task</span>
+                        </div>
+                        <div class="text-center opacity-50">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-xl">🔒</span>
+                            </div>
+                            <span class="text-xs text-text-secondary">10 Tasks</span>
+                        </div>
+                        <div class="text-center opacity-50">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-xl">🔒</span>
+                            </div>
+                            <span class="text-xs text-text-secondary">50 Tasks</span>
+                        </div>
+                        <div class="text-center opacity-50">
+                            <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <span class="text-xl">🔒</span>
+                            </div>
+                            <span class="text-xs text-text-secondary">Fast Response</span>
+                        </div>
+                    </div>
+
+                    <a href="javascript:void(0)"
+                        class="block text-center text-sm text-primary hover:text-primary-600 font-medium mt-4">
+                        View All Badges →
+                    </a>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="card-elevated">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Quick Actions</h3>
+
+                    <div class="space-y-2">
+                        <button class="w-full btn-outline text-left flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Update Availability</span>
+                        </button>
+
+                        <button id="scheduleTasksBtn" class="w-full btn-outline text-left flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span>Schedule Tasks</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Scripts -->
+    <script type="module">
+        import { requireAuth } from '../js/auth-guard.js';
+        import { getCurrentUserData, logout } from '../js/auth.js';
+        import { listenToRequests, acceptRequest, updateRequestStatus } from '../js/requests.js';
+        import { auth, db } from '../js/firebase-config.js';
+        import { onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { updateDoc, serverTimestamp, doc, collection, query, where, getDocs, getDoc } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Protect this page - require volunteer role
+        requireAuth('volunteer').catch(() => {
+            // Redirect handled by requireAuth
+        });
+
+        let currentUser = null;
+        let requestsUnsubscribe = null;
+        let allRequests = [];
+
+        // Initialize dashboard
+        async function initDashboard() {
+            try {
+                const user = auth.currentUser;
+                console.log('Volunteer Firebase auth user:', user);
+                
+                if (user) {
+                    currentUser = await getCurrentUserData();
+                    console.log('Volunteer dashboard - Current user data:', currentUser);
+                    if (currentUser) {
+                        updateUserInfo(currentUser);
+                        await checkVerificationStatus();
+                        loadAvailableRequests();
+                    } else {
+                        console.log('Volunteer authenticated but no user data found');
+                    }
+                } else {
+                    console.log('No volunteer authenticated user found');
+                }
+            } catch (error) {
+                console.error('Error initializing volunteer dashboard:', error);
+            }
+        }
+        
+        // Check verification status
+        async function checkVerificationStatus() {
+            try {
+                const { verificationService } = await import('../js/enhanced-features.js');
+                const status = await verificationService.getVerificationStatus(currentUser.uid);
+                
+                if (status && status.status === 'approved') {
+                    document.getElementById('verificationBadge').classList.remove('hidden');
+                    document.getElementById('verificationStatus').classList.remove('hidden');
+                    document.getElementById('verifyBtn').classList.add('hidden');
+                    
+                    // Display skills if available
+                    if (currentUser.skills && currentUser.skills.length > 0) {
+                        const skillsDisplay = document.getElementById('skillsDisplay');
+                        skillsDisplay.classList.remove('hidden');
+                        skillsDisplay.innerHTML = currentUser.skills.map(skill => 
+                            `<span class="px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full capitalize">${skill}</span>`
+                        ).join('');
+                    }
+                } else {
+                    document.getElementById('verifyBtn').classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Error checking verification status:', error);
+                document.getElementById('verifyBtn').classList.remove('hidden');
+            }
+        }
+
+        // Update user information in UI
+        function updateUserInfo(user) {
+            // Update welcome message
+            const welcomeMsg = document.getElementById('welcomeMessage');
+            if (welcomeMsg) {
+                welcomeMsg.textContent = `Welcome back, ${user.fullName}! 👋`;
+            }
+
+            // Update profile avatars with first name initial
+            const profileAvatar = document.getElementById('profileAvatar');
+            const profileAvatarLarge = document.getElementById('profileAvatarLarge');
+            if (user.fullName) {
+                const initial = user.fullName.charAt(0).toUpperCase();
+                if (profileAvatar) profileAvatar.textContent = initial;
+                if (profileAvatarLarge) profileAvatarLarge.textContent = initial;
+            }
+        }
+
+        // Load available requests
+        function loadAvailableRequests() {
+            console.log('Loading available requests for volunteers...');
+            requestsUnsubscribe = listenToRequests((requests) => {
+                console.log('Volunteer received requests:', requests.length);
+                allRequests = requests; // Store globally for modal functions
+                
+                const pendingRequests = requests.filter(req => req.status === 'pending' && !req.isGeneralChat);
+                console.log('Pending requests for volunteers:', pendingRequests.length);
+                
+                updateRequestsUI(pendingRequests);
+                updateRequestCount(pendingRequests.length);
+                
+                // Also load volunteer's data
+                loadActiveTasks(requests);
+                loadImpactMetrics(requests);
+                updateStatisticsCards(requests);
+                loadMyRatings();
+            });
+        }
+
+        // Update statistics cards with real data
+        async function updateStatisticsCards(allRequests) {
+            if (!currentUser) return;
+            
+            const volunteerRequests = allRequests.filter(req => req.acceptedBy === currentUser.uid);
+            const completedTasks = volunteerRequests.filter(req => req.status === 'completed');
+            const activeTasks = volunteerRequests.filter(req => ['accepted', 'in_progress'].includes(req.status));
+            
+            // Calculate statistics
+            const completedCount = completedTasks.length;
+            const activeCount = activeTasks.length;
+            const totalTasks = volunteerRequests.length;
+            
+            // Get real rating from database
+            const rating = await calculateVolunteerRating(currentUser.uid);
+            
+            // Calculate percentile based on rating
+            const percentile = rating >= 4.8 ? 'Top 1%' : 
+                              rating >= 4.5 ? 'Top 5%' : 
+                              rating >= 4.0 ? 'Top 10%' : 
+                              rating >= 3.5 ? 'Top 25%' : '--';
+            
+            // Calculate badges
+            const earnedBadges = calculateEarnedBadges(completedCount, rating);
+            const newBadges = earnedBadges > 0 ? `+${Math.min(earnedBadges, 5)} New` : '--';
+            
+            // Calculate monthly change (mock calculation)
+            const monthlyChange = completedCount > 0 ? `+${Math.floor(Math.random() * 20) + 5}%` : '--';
+            
+            // Update UI
+            document.getElementById('completedTasksCount').textContent = completedCount;
+            document.getElementById('completedTasksChange').textContent = monthlyChange;
+            
+            document.getElementById('communityRating').textContent = rating.toFixed(1);
+            document.getElementById('ratingBadge').textContent = percentile;
+            
+            document.getElementById('activeTasksStatCount').textContent = activeCount;
+            
+            document.getElementById('earnedBadgesCount').textContent = earnedBadges;
+            document.getElementById('badgesNew').textContent = newBadges;
+        }
+        
+        // Calculate volunteer's average rating from database
+        async function calculateVolunteerRating(volunteerId) {
+            try {
+                const ratingsQuery = query(
+                    collection(db, 'ratings'),
+                    where('volunteerId', '==', volunteerId)
+                );
+                const snapshot = await getDocs(ratingsQuery);
+                
+                if (snapshot.empty) {
+                    return 0; // No ratings yet
+                }
+                
+                let totalRating = 0;
+                let ratingCount = 0;
+                
+                snapshot.forEach(doc => {
+                    const rating = doc.data().rating;
+                    if (rating && rating >= 1 && rating <= 5) {
+                        totalRating += rating;
+                        ratingCount++;
+                    }
+                });
+                
+                return ratingCount > 0 ? totalRating / ratingCount : 0;
+            } catch (error) {
+                console.error('Error calculating rating:', error);
+                return 0;
+            }
+        }
+        
+        // Load volunteer's individual ratings
+        async function loadMyRatings() {
+            if (!currentUser) {
+                console.log('No current user for ratings');
+                return;
+            }
+            
+            console.log('Loading ratings for volunteer:', currentUser.uid);
+            
+            try {
+                const ratingsQuery = query(
+                    collection(db, 'ratings'),
+                    where('volunteerId', '==', currentUser.uid)
+                );
+                const snapshot = await getDocs(ratingsQuery);
+                
+                console.log('Ratings snapshot size:', snapshot.size);
+                
+                const ratings = [];
+                const requestPromises = [];
+                
+                snapshot.forEach(docSnap => {
+                    const ratingData = { id: docSnap.id, ...docSnap.data() };
+                    console.log('Rating found:', ratingData);
+                    ratings.push(ratingData);
+                    requestPromises.push(getDoc(doc(db, 'requests', ratingData.requestId)));
+                });
+                
+                const requestDocs = await Promise.all(requestPromises);
+                
+                const ratingsWithRequests = ratings.map((rating, index) => {
+                    const requestDoc = requestDocs[index];
+                    const requestTitle = requestDoc.exists() ? requestDoc.data().title : 'Unknown Task';
+                    console.log('Request title for rating:', requestTitle);
+                    return {
+                        ...rating,
+                        requestTitle
+                    };
+                });
+                
+                console.log('Final ratings with requests:', ratingsWithRequests);
+                updateMyRatingsUI(ratingsWithRequests);
+            } catch (error) {
+                console.error('Error loading ratings:', error);
+                updateMyRatingsUI([]);
+            }
+        }
+        
+        // Update My Ratings UI
+        function updateMyRatingsUI(ratings) {
+            const ratingsList = document.getElementById('myRatingsList');
+            if (!ratingsList) return;
+            
+            if (ratings.length === 0) {
+                ratingsList.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#F59E0B">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-medium text-text-primary text-sm mb-1">No ratings yet</h4>
+                        <p class="text-xs text-text-secondary">Complete tasks to receive ratings</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            ratingsList.innerHTML = ratings.slice(0, 5).map(rating => {
+                const stars = Array.from({length: 5}, (_, i) => 
+                    `<svg width="12" height="12" viewBox="0 0 24 24" fill="${i < rating.rating ? '#F59E0B' : '#D1D5DB'}">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>`
+                ).join('');
+                
+                const ratingDate = rating.createdAt ? 
+                    new Date(rating.createdAt.toDate()).toLocaleDateString() : 'Recent';
+                
+                return `
+                    <div class="p-3 bg-surface rounded-lg">
+                        <div class="font-medium text-text-primary text-sm mb-1">${rating.requestTitle}</div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="flex items-center gap-1">${stars}</div>
+                            <span class="text-sm font-medium text-text-primary">${rating.rating}/5</span>
+                        </div>
+                        <div class="text-xs text-text-secondary">Rated on ${ratingDate}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Calculate earned badges based on performance
+        function calculateEarnedBadges(completedTasks, rating) {
+            let badges = 0;
+            if (completedTasks >= 1) badges++; // First Task
+            if (completedTasks >= 10) badges++; // 10 Tasks
+            if (completedTasks >= 50) badges++; // 50 Tasks
+            if (rating >= 4.5) badges++; // High Rating
+            if (completedTasks >= 100) badges++; // Century
+            return badges;
+        }
+
+        // Load volunteer's active tasks
+        function loadActiveTasks(allRequests) {
+            if (!currentUser) return;
+            
+            const activeTasks = allRequests.filter(req => 
+                req.acceptedBy === currentUser.uid && 
+                ['accepted', 'in_progress'].includes(req.status) &&
+                !req.isGeneralChat
+            );
+            
+            console.log('Active tasks for volunteer:', activeTasks.length, activeTasks);
+            updateActiveTasksUI(activeTasks);
+        }
+
+        // Update active tasks UI
+        function updateActiveTasksUI(tasks) {
+            const countElement = document.getElementById('activeTasksCount');
+            const listElement = document.getElementById('activeTasksList');
+            
+            if (countElement) {
+                countElement.textContent = `${tasks.length} Active`;
+            }
+            
+            if (!listElement) return;
+            
+            if (tasks.length === 0) {
+                listElement.innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h4 class="font-medium text-text-primary text-sm mb-1">No active tasks</h4>
+                        <p class="text-xs text-text-secondary">Accept requests to see your active tasks here</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            listElement.innerHTML = tasks.map(task => createActiveTaskCard(task)).join('');
+        }
+
+        // Create active task card
+        function createActiveTaskCard(task) {
+            const statusConfig = {
+                accepted: { class: 'status-info', text: 'Accepted' },
+                in_progress: { class: 'status-warning', text: 'In Progress' }
+            };
+            
+            const status = statusConfig[task.status] || statusConfig.accepted;
+            const createdAt = task.createdAt ? new Date(task.createdAt.toDate()).toLocaleDateString() : 'Unknown';
+            
+            return `
+                <div class="p-4 bg-surface rounded-lg border border-border hover:border-primary transition-micro">
+                    <div class="flex items-start justify-between mb-2">
+                        <h4 class="font-medium text-text-primary text-sm">${task.title}</h4>
+                        <span class="${status.class} text-xs">${status.text}</span>
+                    </div>
+                    <p class="text-xs text-text-secondary mb-3">${task.description.substring(0, 80)}${task.description.length > 80 ? '...' : ''}</p>
+                    
+                    <div class="flex items-center gap-2 text-xs text-text-secondary mb-3">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                            <path d="M7 0a7 7 0 100 14A7 7 0 007 0zM7 2a1 1 0 011 1v3.586l2.707 2.707a1 1 0 01-1.414 1.414L6.293 7.707A1 1 0 016 7V3a1 1 0 011-1z"/>
+                        </svg>
+                        <span>Created ${createdAt}</span>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        ${task.status === 'accepted' ? 
+                            `<button onclick="markInProgress('${task.id}')" class="btn-primary text-xs flex-1">Start Task</button>` :
+                            `<button onclick="markComplete('${task.id}')" class="btn-primary text-xs flex-1">Complete</button>`
+                        }
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load impact metrics
+        function loadImpactMetrics(allRequests) {
+            if (!currentUser) return;
+            
+            const volunteerRequests = allRequests.filter(req => req.acceptedBy === currentUser.uid);
+            const completedTasks = volunteerRequests.filter(req => req.status === 'completed');
+            const totalTasks = volunteerRequests.length;
+            
+            // Calculate metrics
+            const hoursContributed = completedTasks.length * 2; // Estimate 2 hours per task
+            const peopleHelped = completedTasks.length;
+            const responseTime = totalTasks > 0 ? Math.floor(Math.random() * 30) + 5 : 0; // Random for now
+            
+            updateImpactMetricsUI({
+                hours: hoursContributed,
+                people: peopleHelped,
+                responseTime: responseTime,
+                totalTasks: totalTasks
+            });
+        }
+
+        // Update impact metrics UI
+        function updateImpactMetricsUI(metrics) {
+            const metricsElement = document.getElementById('impactMetrics');
+            if (!metricsElement) return;
+            
+            const hoursProgress = Math.min((metrics.hours / 100) * 100, 100);
+            const peopleProgress = Math.min((metrics.people / 50) * 100, 100);
+            const responseProgress = metrics.responseTime > 0 ? Math.max(100 - (metrics.responseTime / 60) * 100, 20) : 0;
+            
+            metricsElement.innerHTML = `
+                <div>
+                    <div class="flex items-center justify-between text-sm mb-2">
+                        <span class="text-text-secondary">Hours Contributed</span>
+                        <span class="font-semibold text-text-primary">${metrics.hours} hrs</span>
+                    </div>
+                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                        <div class="bg-success h-2 rounded-full" style="width: ${hoursProgress}%"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex items-center justify-between text-sm mb-2">
+                        <span class="text-text-secondary">People Helped</span>
+                        <span class="font-semibold text-text-primary">${metrics.people}</span>
+                    </div>
+                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full" style="width: ${peopleProgress}%"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="flex items-center justify-between text-sm mb-2">
+                        <span class="text-text-secondary">Response Time</span>
+                        <span class="font-semibold text-text-primary">${metrics.responseTime} mins</span>
+                    </div>
+                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                        <div class="bg-accent h-2 rounded-full" style="width: ${responseProgress}%"></div>
+                    </div>
+                </div>
+                
+                ${metrics.people >= 10 ? `
+                <div class="mt-6 p-4 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="#F59E0B">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-text-primary text-sm">Community Hero</div>
+                            <div class="text-xs text-text-secondary">You've helped ${metrics.people} people!</div>
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
+            `;
+            
+            // Load badges based on metrics
+            loadEarnedBadges(metrics);
+        }
+
+        // Load earned badges
+        function loadEarnedBadges(metrics) {
+            const badgesElement = document.getElementById('earnedBadges');
+            if (!badgesElement) return;
+            
+            const badges = [];
+            
+            if (metrics.totalTasks >= 1) {
+                badges.push({ name: 'First Task', color: 'warning', icon: '⭐' });
+            }
+            if (metrics.totalTasks >= 10) {
+                badges.push({ name: '10 Tasks', color: 'success', icon: '🏆' });
+            }
+            if (metrics.totalTasks >= 50) {
+                badges.push({ name: '50 Tasks', color: 'primary', icon: '🎖️' });
+            }
+            if (metrics.responseTime > 0 && metrics.responseTime <= 15) {
+                badges.push({ name: 'Fast Response', color: 'accent', icon: '⚡' });
+            }
+            
+            if (badges.length === 0) {
+                badgesElement.innerHTML = `
+                    <div class="col-span-4 text-center py-8">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h4 class="font-medium text-text-primary text-sm mb-1">No badges yet</h4>
+                        <p class="text-xs text-text-secondary">Complete tasks to earn badges</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Fill remaining slots with empty badges
+            while (badges.length < 4) {
+                badges.push({ name: 'Locked', color: 'secondary', icon: '🔒', locked: true });
+            }
+            
+            badgesElement.innerHTML = badges.slice(0, 4).map(badge => `
+                <div class="text-center ${badge.locked ? 'opacity-50' : ''}">
+                    <div class="w-12 h-12 bg-${badge.color}-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <span class="text-xl">${badge.icon}</span>
+                    </div>
+                    <span class="text-xs text-text-secondary">${badge.name}</span>
+                </div>
+            `).join('');
+        }
+
+        // Update request count
+        function updateRequestCount(count) {
+            const countElement = document.querySelector('.text-sm.text-text-secondary');
+            if (countElement && countElement.textContent.includes('requests in your area')) {
+                countElement.textContent = `${count} requests in your area`;
+            }
+        }
+
+        // Update requests UI
+        function updateRequestsUI(requests) {
+            console.log('Volunteer updating UI with requests:', requests.length);
+            const requestsContainer = document.querySelector('.space-y-4');
+            console.log('Volunteer requests container found:', !!requestsContainer);
+            
+            if (!requestsContainer) {
+                console.error('Volunteer could not find .space-y-4 element');
+                return;
+            }
+
+            if (requests.length === 0) {
+                console.log('Volunteer no requests to display');
+                requestsContainer.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-text-primary mb-2">No requests available</h3>
+                        <p class="text-text-secondary">Check back later for new community assistance requests</p>
+                    </div>
+                `;
+                return;
+            }
+
+            console.log('Volunteer creating request cards for', requests.length, 'requests');
+            const requestCards = requests.map(request => {
+                console.log('Volunteer creating card for:', request.id, request.title);
+                return createRequestCard(request);
+            }).join('');
+            
+            requestsContainer.innerHTML = requestCards + `
+                <div class="text-center pt-4">
+                    <button class="btn-outline">
+                        Load More Requests
+                        <svg class="inline-block ml-2" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 4a.5.5 0 01.5.5v5.793l2.146-2.147a.5.5 0 01.708.708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 11.708-.708L7.5 10.293V4.5A.5.5 0 018 4z" clip-rule="evenodd"/>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            
+            console.log('Volunteer UI update complete');
+            // Add event listeners to accept buttons
+            addAcceptButtonListeners();
+        }
+
+        // Create request card HTML
+        function createRequestCard(request) {
+            const urgencyConfig = {
+                high: { class: 'border-l-error', badge: 'status-error text-xs', text: 'URGENT' },
+                medium: { class: 'border-l-warning', badge: 'status-warning text-xs', text: 'MEDIUM' },
+                low: { class: 'border-l-primary', badge: 'status-info text-xs', text: 'LOW' }
+            };
+
+            const categoryIcons = {
+                food: '🍽️',
+                emergency: '🚨',
+                transportation: '🚗',
+                elderly_care: '👴',
+                medical: '💊',
+                household: '🏠',
+                other: '📋'
+            };
+
+            const urgency = urgencyConfig[request.urgency] || urgencyConfig.low;
+            const icon = categoryIcons[request.category] || '📋';
+            const createdAt = request.createdAt ? new Date(request.createdAt.toDate()).toLocaleString() : 'Unknown';
+
+            return `
+                <div class="card-elevated ${urgency.class} hover:shadow-lg transition-standard">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 space-y-3">
+                            <div class="flex items-start justify-between gap-4">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2">
+                                        ${request.urgency === 'high' ? `<span class="${urgency.badge}">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" class="inline">
+                                                <circle cx="6" cy="6" r="6"/>
+                                            </svg>
+                                            ${urgency.text}
+                                        </span>` : ''}
+                                        <span class="text-xs text-text-secondary">Posted ${createdAt}</span>
+                                    </div>
+                                    <h3 class="text-lg font-semibold text-text-primary mb-1">${request.title}</h3>
+                                    <p class="text-sm text-text-secondary line-clamp-2">${request.description}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2">
+                                <span class="inline-flex items-center gap-1 px-2 py-1 bg-surface rounded-lg text-xs text-text-secondary">
+                                    <span>${icon}</span>
+                                    <span>${request.location}</span>
+                                </span>
+                                <span class="px-2 py-1 bg-primary-50 text-primary-700 rounded-lg text-xs font-medium">
+                                    ${request.category.replace('_', ' ')}
+                                </span>
+                            </div>
+
+                            <div class="flex items-center gap-3 pt-2">
+                                <button class="btn-primary flex-1 md:flex-initial accept-btn" data-request-id="${request.id}">
+                                    Accept Request
+                                </button>
+                                <button class="btn-outline" onclick="viewRequestDetails('${request.id}')">
+                                    View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Add event listeners to accept buttons
+        function addAcceptButtonListeners() {
+            document.querySelectorAll('.accept-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const requestId = button.getAttribute('data-request-id');
+                    
+                    if (!currentUser || !requestId) return;
+
+                    try {
+                        button.textContent = 'Accepting...';
+                        button.disabled = true;
+
+                        const result = await acceptRequest(requestId, currentUser.uid);
+                        
+                        if (result.success) {
+                            button.textContent = 'Accepted!';
+                            button.classList.add('opacity-50', 'cursor-not-allowed');
+                            
+                            // Remove the card after a short delay
+                            setTimeout(() => {
+                                button.closest('.card-elevated').remove();
+                            }, 2000);
+                        } else {
+                            button.textContent = 'Accept Request';
+                            button.disabled = false;
+                            alert('Failed to accept request: ' + result.error);
+                        }
+                    } catch (error) {
+                        button.textContent = 'Accept Request';
+                        button.disabled = false;
+                        alert('Error accepting request: ' + error.message);
+                    }
+                });
+            });
+        }
+
+        // View request details function
+        window.viewRequestDetails = function(requestId) {
+            const request = allRequests.find(r => r.id === requestId);
+            if (!request) {
+                console.error('Request not found:', requestId);
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-semibold text-text-primary">${request.title}</h2>
+                            <button onclick="this.closest('.fixed').remove()" class="text-gray-500 hover:text-gray-700">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-gray-50 p-4 rounded-lg">
+                                <h3 class="font-semibold text-gray-700 mb-2">Description</h3>
+                                <p class="text-gray-600">${request.description}</p>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">Category</h4>
+                                    <p class="text-gray-600 capitalize">${request.category?.replace('_', ' ') || 'N/A'}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">Province</h4>
+                                    <p class="text-gray-600 capitalize">${request.location || 'N/A'}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">Urgency</h4>
+                                    <p class="text-gray-600 capitalize">${request.urgency || 'N/A'}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">Status</h4>
+                                    <p class="text-gray-600 capitalize">${request.status || 'N/A'}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-700">Contact Methods</h4>
+                                <p class="text-gray-600">${request.contactMethods?.join(', ') || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-6">
+                            <button onclick="this.closest('.fixed').remove()" class="btn-outline flex-1">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        };
+
+        // Open chat function
+        window.openChat = function(requestId) {
+            console.log('Opening chat for request:', requestId);
+            if (!requestId) {
+                console.error('No request ID provided for chat');
+                return;
+            }
+            
+            // Find the request to verify access
+            const request = allRequests.find(r => r.id === requestId);
+            if (!request) {
+                console.error('Request not found:', requestId);
+                alert('Request not found');
+                return;
+            }
+            
+            if (request.acceptedBy !== currentUser?.uid && request.createdBy !== currentUser?.uid) {
+                console.error('Access denied to chat for request:', requestId);
+                alert('You do not have access to this chat');
+                return;
+            }
+            
+            console.log('Navigating to chat for request:', requestId);
+            window.location.href = `chat.html?requestId=${requestId}`;
+        };
+
+        // Mark task as in progress
+        window.markInProgress = async function(requestId) {
+            try {
+                console.log('Marking task in progress:', requestId);
+                const result = await updateRequestStatus(requestId, 'in_progress');
+                if (result.success) {
+                    console.log('Task marked as in progress successfully');
+                } else {
+                    console.error('Failed to mark task as in progress:', result.error);
+                    alert('Failed to start task: ' + result.error);
+                }
+            } catch (error) {
+                console.error('Error marking task in progress:', error);
+                alert('Error starting task: ' + error.message);
+            }
+        };
+
+        // Mark task as complete
+        window.markComplete = async function(requestId) {
+            if (confirm('Mark this task as completed?')) {
+                try {
+                    console.log('Marking task complete:', requestId);
+                    const result = await updateRequestStatus(requestId, 'completed');
+                    if (result.success) {
+                        console.log('Task marked as completed successfully');
+                    } else {
+                        console.error('Failed to mark task as complete:', result.error);
+                        alert('Failed to mark task as complete: ' + result.error);
+                    }
+                } catch (error) {
+                    console.error('Error marking task complete:', error);
+                    alert('Error marking task complete: ' + error.message);
+                }
+            }
+        };
+
+        // Logout functionality - Simple
+        document.addEventListener('DOMContentLoaded', () => {
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    try {
+                        await logout();
+                        window.location.href = 'login.html';
+                    } catch (error) {
+                        console.error('Logout error:', error);
+                        window.location.href = 'login.html';
+                    }
+                });
+            }
+        });
+        
+        // Mobile logout
+        document.addEventListener('click', async (e) => {
+            if (e.target.closest('a[href="login.html"]')) {
+                e.preventDefault();
+                try {
+                    await logout();
+                    window.location.href = 'login.html';
+                } catch (error) {
+                    console.error('Logout error:', error);
+                }
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Profile dropdown toggle - Fixed
+        const profileBtn = document.getElementById('profileBtn');
+        const profileMenu = document.getElementById('profileMenu');
+
+        if (profileBtn && profileMenu) {
+            profileBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                profileMenu.classList.toggle('hidden');
+                console.log('Profile dropdown toggled:', !profileMenu.classList.contains('hidden'));
+            });
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (profileBtn && profileMenu && !profileBtn.contains(e.target) && !profileMenu.contains(e.target)) {
+                profileMenu.classList.add('hidden');
+            }
+            if (mobileMenuBtn && mobileMenu && !mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            // Filter visible request cards
+            document.querySelectorAll('.card-elevated').forEach(card => {
+                const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+                const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // My Tasks functionality
+        function showMyTasksModal() {
+            if (!currentUser) return;
+            
+            // Get all tasks for this volunteer
+            listenToRequests((allRequests) => {
+                const myTasks = allRequests.filter(req => req.acceptedBy === currentUser.uid);
+                displayMyTasksModal(myTasks);
+            });
+        }
+        
+        function displayMyTasksModal(tasks) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl max-w-4xl w-full mx-4 max-h-[80vh] overflow-hidden">
+                    <div class="flex items-center justify-between p-6 border-b border-border">
+                        <h2 class="text-xl font-semibold text-text-primary">My Tasks</h2>
+                        <button id="closeModal" class="text-text-secondary hover:text-text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-6 overflow-y-auto max-h-[60vh]">
+                        ${tasks.length === 0 ? `
+                            <div class="text-center py-12">
+                                <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                                    </svg>
+                                </div>
+                                <h3 class="text-lg font-semibold text-text-primary mb-2">No tasks yet</h3>
+                                <p class="text-text-secondary">Accept requests to see your tasks here</p>
+                            </div>
+                        ` : `
+                            <div class="space-y-4">
+                                ${tasks.map(task => createTaskModalCard(task)).join('')}
+                            </div>
+                        `}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Close modal functionality
+            modal.querySelector('#closeModal').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+        }
+        
+        function createTaskModalCard(task) {
+            const statusConfig = {
+                accepted: { class: 'status-info', text: 'Accepted' },
+                in_progress: { class: 'status-warning', text: 'In Progress' },
+                completed: { class: 'status-success', text: 'Completed' }
+            };
+            
+            const status = statusConfig[task.status] || statusConfig.accepted;
+            const createdAt = task.createdAt ? new Date(task.createdAt.toDate()).toLocaleDateString() : 'Unknown';
+            
+            return `
+                <div class="border border-border rounded-xl p-4 hover:shadow-md transition-standard">
+                    <div class="flex items-start justify-between mb-3">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-text-primary mb-1">${task.title}</h3>
+                            <p class="text-sm text-text-secondary mb-2">${task.description}</p>
+                            <div class="flex items-center gap-2 text-xs text-text-secondary">
+                                <span>📍 ${task.location}</span>
+                                <span>•</span>
+                                <span>Created ${createdAt}</span>
+                            </div>
+                        </div>
+                        <span class="${status.class} text-xs ml-4">${status.text}</span>
+                    </div>
+                    <div class="flex gap-2">
+                        ${task.status !== 'completed' ? `
+                            <button onclick="markComplete('${task.id}')" class="btn-primary text-sm w-full">
+                                Mark Complete
+                            </button>
+                        ` : `
+                            <button class="btn-outline text-sm opacity-50 cursor-not-allowed" disabled>
+                                Task Completed
+                            </button>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Add event listeners for My Tasks links
+        document.querySelectorAll('a[href="javascript:void(0)"]').forEach(link => {
+            if (link.textContent.trim().includes('My Tasks') || link.textContent.trim() === 'My\n                        Tasks') {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showMyTasksModal();
+                });
+            }
+        });
+        
+        // Add event listener for View All Tasks button
+        document.addEventListener('click', (e) => {
+            if (e.target.textContent && e.target.textContent.includes('View All Tasks')) {
+                e.preventDefault();
+                showMyTasksModal();
+            }
+        });
+
+        // Availability toggle functionality
+        let isAvailable = true;
+        const availabilityBtn = document.getElementById('availabilityBtn');
+        const availabilityText = document.getElementById('availabilityText');
+        
+        if (availabilityBtn) {
+            availabilityBtn.addEventListener('click', async () => {
+                isAvailable = !isAvailable;
+                availabilityText.textContent = isAvailable ? 'Available' : 'Unavailable';
+                availabilityBtn.className = isAvailable ? 
+                    'btn-outline flex items-center gap-2' : 
+                    'btn-outline flex items-center gap-2 opacity-50';
+                
+                // Update availability in database
+                if (currentUser) {
+                    try {
+                        await updateUserAvailability(currentUser.uid, isAvailable);
+                    } catch (error) {
+                        console.error('Error updating availability:', error);
+                    }
+                }
+            });
+        }
+        
+        // Filter functionality
+        let activeFilters = [];
+        const filterBtn = document.getElementById('filterBtn');
+        const filterCount = document.getElementById('filterCount');
+        
+        if (filterBtn) {
+            filterBtn.addEventListener('click', () => {
+                showFilterModal();
+            });
+        }
+        
+        // Sort functionality
+        const sortSelect = document.getElementById('sortSelect');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (e) => {
+                applySorting(e.target.value);
+            });
+        }
+        
+
+        
+        // Schedule Tasks functionality
+        const scheduleTasksBtn = document.getElementById('scheduleTasksBtn');
+        if (scheduleTasksBtn) {
+            scheduleTasksBtn.addEventListener('click', () => {
+                showScheduleModal();
+            });
+        }
+        
+        // Update user availability in database
+        async function updateUserAvailability(uid, available) {
+            try {
+                await updateDoc(doc(db, 'users', uid), {
+                    available: available,
+                    lastSeen: serverTimestamp()
+                });
+                console.log('Availability updated:', uid, available);
+            } catch (error) {
+                console.error('Error updating availability:', error);
+            }
+        }
+        
+        // Show filter modal
+        function showFilterModal() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl max-w-md w-full mx-4">
+                    <div class="flex items-center justify-between p-6 border-b border-border">
+                        <h2 class="text-xl font-semibold text-text-primary">Filter Requests</h2>
+                        <button id="closeFilterModal" class="text-text-secondary hover:text-text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Category</label>
+                            <select id="categoryFilter" class="input w-full">
+                                <option value="">All Categories</option>
+                                <option value="food">Food</option>
+                                <option value="emergency">Emergency</option>
+                                <option value="transportation">Transportation</option>
+                                <option value="elderly_care">Elderly Care</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Urgency</label>
+                            <select id="urgencyFilter" class="input w-full">
+                                <option value="">All Urgency Levels</option>
+                                <option value="high">High</option>
+                                <option value="medium">Medium</option>
+                                <option value="low">Low</option>
+                            </select>
+                        </div>
+                        <div class="flex gap-3 pt-4">
+                            <button id="applyFilters" class="btn-primary flex-1">Apply Filters</button>
+                            <button id="clearFilters" class="btn-outline flex-1">Clear All</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Modal event listeners
+            modal.querySelector('#closeFilterModal').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+            
+            modal.querySelector('#applyFilters').addEventListener('click', () => {
+                const category = modal.querySelector('#categoryFilter').value;
+                const urgency = modal.querySelector('#urgencyFilter').value;
+                applyFilters({ category, urgency });
+                document.body.removeChild(modal);
+            });
+            
+            modal.querySelector('#clearFilters').addEventListener('click', () => {
+                applyFilters({});
+                document.body.removeChild(modal);
+            });
+        }
+        
+        // Apply filters
+        function applyFilters(filters) {
+            activeFilters = Object.entries(filters).filter(([key, value]) => value !== '');
+            filterCount.textContent = activeFilters.length;
+            
+            // Filter visible request cards
+            document.querySelectorAll('.card-elevated').forEach(card => {
+                let show = true;
+                
+                if (filters.category) {
+                    const categoryText = card.textContent.toLowerCase();
+                    show = show && categoryText.includes(filters.category.replace('_', ' '));
+                }
+                
+                if (filters.urgency) {
+                    const urgencyText = card.textContent.toLowerCase();
+                    show = show && urgencyText.includes(filters.urgency);
+                }
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+        }
+        
+        // Apply sorting
+        function applySorting(sortBy) {
+            const container = document.querySelector('.space-y-4');
+            const cards = Array.from(container.querySelectorAll('.card-elevated'));
+            
+            cards.sort((a, b) => {
+                switch (sortBy) {
+                    case 'newest':
+                        return new Date(b.dataset.created || 0) - new Date(a.dataset.created || 0);
+                    case 'oldest':
+                        return new Date(a.dataset.created || 0) - new Date(b.dataset.created || 0);
+                    case 'urgency':
+                        const urgencyOrder = { high: 3, medium: 2, low: 1 };
+                        const aUrgency = a.textContent.includes('URGENT') ? 3 : a.textContent.includes('MEDIUM') ? 2 : 1;
+                        const bUrgency = b.textContent.includes('URGENT') ? 3 : b.textContent.includes('MEDIUM') ? 2 : 1;
+                        return bUrgency - aUrgency;
+                    default:
+                        return 0;
+                }
+            });
+            
+            cards.forEach(card => container.appendChild(card));
+        }
+        
+
+        
+        // Show schedule modal
+        function showScheduleModal() {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-xl max-w-md w-full mx-4">
+                    <div class="flex items-center justify-between p-6 border-b border-border">
+                        <h2 class="text-xl font-semibold text-text-primary">Schedule Tasks</h2>
+                        <button id="closeScheduleModal" class="text-text-secondary hover:text-text-primary">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Available Days</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <label class="flex items-center gap-2">
+                                    <input type="checkbox" class="rounded" value="monday"> Monday
+                                </label>
+                                <label class="flex items-center gap-2">
+                                    <input type="checkbox" class="rounded" value="tuesday"> Tuesday
+                                </label>
+                                <label class="flex items-center gap-2">
+                                    <input type="checkbox" class="rounded" value="wednesday"> Wednesday
+                                </label>
+                                <label class="flex items-center gap-2">
+                                    <input type="checkbox" class="rounded" value="thursday"> Thursday
+                                </label>
+                                <label class="flex items-center gap-2">
+                                    <input type="checkbox" class="rounded" value="friday"> Friday
+                                </label>
+                                <label class="flex items-center gap-2">
+                                    <input type="checkbox" class="rounded" value="weekend"> Weekend
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-text-primary mb-2">Available Hours</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <input type="time" class="input" placeholder="From">
+                                <input type="time" class="input" placeholder="To">
+                            </div>
+                        </div>
+                        <div class="flex gap-3 pt-4">
+                            <button class="btn-primary flex-1">Save Schedule</button>
+                            <button id="cancelSchedule" class="btn-outline flex-1">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            modal.querySelector('#closeScheduleModal').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+            
+            modal.querySelector('#cancelSchedule').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Volunteer DOM loaded, waiting for auth state...');
+            onAuthStateChanged(auth, (user) => {
+                console.log('Volunteer auth state changed:', user ? 'logged in' : 'logged out');
+                if (user) {
+                    initDashboard();
+                } else {
+                    console.log('Volunteer not authenticated, redirecting...');
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', () => {
+            if (requestsUnsubscribe) {
+                requestsUnsubscribe();
+            }
+        });
+    </script>
+
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+
+</html>
