@@ -21,11 +21,6 @@
     }
   ],
   "builds": [
-    {
-      "src": "css/tailwind.css",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "css" }
-    },
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "pages/**/*.html", "use": "@vercel/static" },
     { "src": "css/**/*.css", "use": "@vercel/static" },
