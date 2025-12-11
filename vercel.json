@@ -1,12 +1,9 @@
 {
+  "version": 2,
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/index.html"
-    },
-    {
       "source": "/(.*)",
-      "destination": "/$1"
+      "destination": "/index.html"
     }
   ],
   "headers": [
@@ -26,6 +23,20 @@
           "value": "1; mode=block"
         }
       ]
+    }
+  ],
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/tailwind.css",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "js/**/*",
+      "use": "@vercel/static"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "community-help-platform",
   "version": "1.0.0",
-  "description": "",
+  "description": "<div align=\"center\">   <h1>🤝 Community Help Platform</h1>   <p><strong>Connecting communities through verified assistance and real-time support</strong></p>",
   "main": "index.html",
   "dependencies": {
     "@dhiwise/component-tagger": "^1.0.10",
@@ -25,5 +25,6 @@
     "@tailwindcss/line-clamp": "^0.1.0",
     "@tailwindcss/typography": "^0.5.16",
     "tailwindcss": "^3.4.17"
-  }
+  },
+  "keywords": []
 }
